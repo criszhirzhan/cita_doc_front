@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "cita_doc",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}

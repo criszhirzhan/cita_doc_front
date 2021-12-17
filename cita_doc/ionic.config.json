@@ -1,0 +1,7 @@
+{
+  "name": "cita_doc",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
