@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { Login } from 'src/app/models/login';
 import { ToastController } from '@ionic/angular';
 import { AuthService } from 'src/app/services/auth.service';
-import { LoginService } from 'src/app/services/login.service';
 import { TokenService } from 'src/app/services/token.service';
 
 @Component({
@@ -14,17 +13,16 @@ import { TokenService } from 'src/app/services/token.service';
 export class LoginPage implements OnInit {
 
   login : Login= new Login(); 
-  email=''
-  password=''
   errMessage=''
 
   constructor(private router: Router,
-    private loginService: LoginService,
     private tokenService: TokenService,
     private authService: AuthService,
     private toastController: ToastController) { }
 
   ngOnInit() {
+   // console.log('token id: ', this.tokenService.getUserId());
+   // console.log('token nombre: ', this.tokenService.getNombre());
   }
 
   async onLogin(){
@@ -36,6 +34,8 @@ export class LoginPage implements OnInit {
         console.log('data',data);
         console.log('dataToken',data.token);
         this.tokenService.setToken(data.token);
+        
+        this.router.navigateByUrl('tabs')
       },
       err=>{
         this.errMessage=err.error.message;

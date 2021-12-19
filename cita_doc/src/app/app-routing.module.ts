@@ -29,7 +29,15 @@ const routes: Routes = [
   {
     path: 'perfil',
     loadChildren: () => import('./privado/perfil/perfil.module').then( m => m.PerfilPageModule)
+  },  {
+    path: 'notificaciones',
+    loadChildren: () => import('./privado/notificaciones/notificaciones.module').then( m => m.NotificacionesPageModule)
+  },
+  {
+    path: 'chat',
+    loadChildren: () => import('./privado/chat/chat.module').then( m => m.ChatPageModule)
   }
+
 ];
 @NgModule({
   imports: [

@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
+import  jwt_decode  from 'jwt-decode';
 
 const TOKEN_KEY='AuthToken';
-const USER_ID='AuthUserId';
-const EMAIL = 'AuthEmail';
-const NOMBRE ='AuthNombre';
-const APELLIDO ='AuthApellido';
+const USER_ID='userId';
+const EMAIL = 'email';
+const NOMBRE ='nombre';
+const APELLIDO ='apellido';
 @Injectable({
   providedIn: 'root'
 })
@@ -30,8 +31,12 @@ export class TokenService {
     window.sessionStorage.setItem(USER_ID, userId);
   }
 
-  public getUserId(): string{
-    return window.sessionStorage.getItem(USER_ID);
+  // public getUserId(): string{
+  //   return window.sessionStorage.getItem(USER_ID);
+  // }
+
+  public getUserId(): number{
+    return this.getDecodedAccessToken(this.getToken()).userId;
   }
 
   public setEmail(email: string): void{
@@ -40,7 +45,7 @@ export class TokenService {
   }
 
   public getEmail(): string{
-    return window.sessionStorage.getItem(EMAIL);
+    return this.getDecodedAccessToken(this.getToken()).email;
   }
 
   public setNombre(nombre: string): void{
@@ -49,7 +54,7 @@ export class TokenService {
   }
 
   public getNombre(): string{
-    return window.sessionStorage.getItem(NOMBRE)
+    return this.getDecodedAccessToken(this.getToken()).nombre;
   }
 
   public setApellido(apellido: string): void{
@@ -58,7 +63,16 @@ export class TokenService {
   }
 
   public getApellido(): string{
-    return window.sessionStorage.getItem(APELLIDO)
+    return this.getDecodedAccessToken(this.getToken()).apellido;
+  }
+
+
+  public getDecodedAccessToken(token: string): any{
+    try{
+      return jwt_decode(token);
+    }catch(Error){
+      return null;
+    }
   }
 
 }

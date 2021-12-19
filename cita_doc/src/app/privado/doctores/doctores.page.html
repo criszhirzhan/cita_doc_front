@@ -18,4 +18,41 @@
 
 <ion-content>
 
+  <!-- <ion-grid no-padding class="home-gallery">
+    <ion-row class="ion-text-center">
+      <ion-col  *ngFor="let doctor of medicos "> 
+        <div class="products_list">
+            <div  class="products_list_img">
+                <img style="height: 200px; width: 400px;" src="../../../assets/images/doctorPerfil.png" (click)="verDoctor(doctor)" />
+                <b><p (click)="verDoctor(doctor)">{{doctor.nombres}}</p><p>{{doctor.apellidos}}</p></b>
+            </div>    
+        </div>
+    </ion-col>
+    </ion-row>
+  </ion-grid> -->
+
+    <ion-grid no-padding class="home-gallery">
+    <ion-row class="ion-text-center">
+      <ion-col  size="6" *ngFor="let doctor of medicos "> 
+        <ion-card>   
+          <img src="../../../assets/images/doctorPerfil.png">
+          <div class="card-title">{{doctor.nombres}} {{doctor.apellidos}}</div>
+          <div>{{ doctor.descripcion }}</div>  
+        </ion-card>
+    </ion-col>
+    </ion-row>
+  </ion-grid> 
+
+    <!-- <ion-grid *ngFor ="let doctor of medicos">
+    <ion-row>
+      <ion-col size="6" *ngFor="let item of doctor?.medicos">
+        <ion-card>   
+          <img src="../../../assets/images/doctorPerfil.png">
+          <div class="card-title">{{item?.nombres}} {{item?.apellidos}}</div>
+          <div>{{ item?.descripcion }}</div>  
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>  -->
+
 </ion-content>

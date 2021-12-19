@@ -1,0 +1,56 @@
+
+<ion-header>
+  <ion-toolbar >
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+
+    <ion-title class="ion-text-center">Chat con Dory</ion-title>
+
+    <ion-buttons slot="start">
+      <ion-button (click)="volver()" fill="clear">
+        <ion-icon name="chevron-back-sharp"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row *ngFor="let message of mensajes">
+      <ion-col size="9" *ngIf="currentUser !== message.user" class="message other-message">
+ 
+        <span>{{message.message}}</span>
+        <br>
+       <ion-col *ngIf="message.buttons !== undefined">
+         <ion-row *ngFor="let boton of message.buttons">
+          <ion-button  color="success" (click)="sendRespuesta(boton)">{{boton.title}}</ion-button>
+         </ion-row>
+       </ion-col>
+      </ion-col>
+   
+
+      <ion-col offset="3" size="9" *ngIf="currentUser === message.user" class="message my-message">
+
+        <span>{{message.texto}}</span>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar color="light">
+    <ion-row align-items-center no-padding>
+      <ion-col size="10">
+        <textarea autosize maxRows="4" [(ngModel)]="newMsg" class="message-input"></textarea>
+      </ion-col>
+      <ion-col size="2">
+        <ion-button expand="block" fill="clear" color="primary" [disabled]="newMsg === ''" class="msg-btn"
+        (click)="sendMessage()">
+        <ion-icon name="send"></ion-icon>
+      </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-footer>

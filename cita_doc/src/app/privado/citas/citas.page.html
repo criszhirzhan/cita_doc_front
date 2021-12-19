@@ -19,9 +19,21 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Header</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-grid>
+    <ion-row *ngFor="let cita of citas">
+      <ion-col class="message other-message">
+        <span>Fecha: </span>
+        <span>{{cita.fecha}}</span>
+        <br>
+        <span>Medico: </span>
+        <span>{{cita.medico}}</span>
+        <br>
+        <span>Clinica: </span>
+        <span>{{cita.clinica}}</span>
+      </ion-col>
+    </ion-row>
+    <br>
+
+  </ion-grid>
+
 </ion-content>
