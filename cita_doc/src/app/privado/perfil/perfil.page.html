@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar >
+  <ion-toolbar>
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
@@ -22,6 +22,151 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content fullscreen>
+  <ion-card>
+    <ion-row>
+      <ion-col>
+        <center><img class="imgC" style="height: 100px; width: 100px;" src="../../../assets/images/perfil.png" />
+        </center>
+
+
+
+        <ion-buttons>
+          <h4 slot="start">Datos personales </h4>
+          <ion-button (click)="verDatosPersonales()" slot="end" style="color: rgb(24, 142, 197);" fill="clear">
+            <ion-icon name="add-circle"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+
+
+
+
+        <ion-card>
+          <p>Nombres: {{paciente.nombre}}</p>
+        </ion-card>
+        <ion-card>
+          <p>Apellidos: {{paciente.apellido}}</p>
+        </ion-card>
+        <ion-card>
+          <p>Correo: {{paciente.email}}</p>
+        </ion-card>
+        <ion-card>
+          <p>Fecha nacimiento: {{paciente.fechaNacimiento}}</p>
+        </ion-card>
+        <ion-card>
+          <p>Direcciones</p>
+          <ion-col *ngIf="tamdirecciones !== 0">
+            <ion-row *ngFor="let direccion of paciente.direccionPacientes">
+              <p>Pais: {{direccion.pais}}</p>
+              <p>Provincia: {{direccion.provincia}}</p>
+              <p>Calle principal: {{direccion.callePrincipal}}</p>
+              <p>Calle secundaria: {{direccion.calleSecundaria}}</p>
+            </ion-row>
+          </ion-col>
+
+          <ion-col *ngIf="tamdirecciones === 0">
+            <ion-label>
+              <ion-row>
+                <p>Sin direcciones</p>
+              </ion-row>
+            </ion-label>
+          </ion-col>
+        </ion-card>
+        <ion-card>
+          <p>Genero: {{paciente.genero}}</p>
+        </ion-card>
+        <ion-card>
+          <p>Numero contacto: {{paciente.numeroContacto}}</p>
+        </ion-card>
+
+
+        <ion-buttons>
+          <h4 slot="start">Datos médicos </h4>
+        </ion-buttons>
+
+
+        <ion-card (click)="presentAlertPrompt()">
+          <p>Tipo de sangre: {{paciente.tipoSangre}}</p>
+        </ion-card>
+
+        <ion-buttons>
+          <h5 slot="start">Cirugías</h5>
+          <ion-button (click)="cirugias()" slot="end" style="color: rgb(24, 142, 197);" fill="clear">
+            <ion-icon name="add-circle"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+
+        <ion-card>
+
+          <ion-col *ngIf="tamcirugias !== 0">
+
+            <ion-list>
+              <ion-item *ngFor="let cirugia of paciente.pacienteCirugias">
+                <ion-label (click)="ver(cirugia.cirugiaId)">
+                  <!-- <h3>Nombre:</h3> -->
+                  <p>Descripcion: {{cirugia.cirugia.descripcion}}</p>
+                  <!-- <h3>Tipo: </h3> -->
+                  <p>Tipo: {{cirugia.tipo}}</p>
+                </ion-label>
+              </ion-item>
+            </ion-list>
+
+
+          </ion-col>
+
+          <ion-col *ngIf="tamcirugias === 0">
+            <ion-label>
+              <ion-row>
+                <p>Sin cirugias</p>
+              </ion-row>
+            </ion-label>
+          </ion-col>
+
+        </ion-card>
+
+        <ion-buttons>
+          <h5 slot="start">Patologías </h5>
+
+          <ion-button (click)="patologias()" slot="end" style="color: rgb(24, 142, 197);" fill="clear">
+            <ion-icon name="add-circle"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+
+
+        <ion-card>
+
+          <ion-col *ngIf="tampatologias !== 0">
+            <!-- <h6> Personales</h6> -->
+            <ion-label>Tipo patologia</ion-label>
+            <ion-select class="custom-options" [(ngModel)]="filtradoP" interface="popover">
+              <ion-select-option [value]="familiar">Personal</ion-select-option>
+              <ion-select-option [value]="personal">Familiar</ion-select-option>
+            </ion-select>
+
+            <ion-list>
+              <ion-item *ngFor="let patologia of paciente.pacientePatologias | filter:filtradoP">
+                <ion-label (click)="ver(patologia.pacientePatologiaId)">
+                  <!-- <h3>Nombre:</h3> -->
+                  <p>Nombre: {{patologia.enfermedad.nombre}}</p>
+                  <!-- <h3>Tipo: </h3> -->
+                  <p>Tipo: {{patologia.enfermedad.tipo}}</p>
+                </ion-label>
+              </ion-item>
+            </ion-list>
+          </ion-col>
+
+
+          <ion-col *ngIf="tampatologias === 0">
+            <ion-label>
+              <ion-row>
+                <p>Sin patologias</p>
+              </ion-row>
+            </ion-label>
+          </ion-col>
+
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-card>
 
 </ion-content>

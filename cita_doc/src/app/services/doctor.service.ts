@@ -15,5 +15,9 @@ export class DoctorService {
     return this.http.get<any>(this.url)
   }
 
+  getDoctoresClinica(idClinicca: number): Observable<any>{
+    return this.http.get<any>(this.url+'/clinica/'+idClinicca)
+  }
+
 
 }

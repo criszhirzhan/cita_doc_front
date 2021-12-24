@@ -29,14 +29,36 @@ const routes: Routes = [
   {
     path: 'perfil',
     loadChildren: () => import('./privado/perfil/perfil.module').then( m => m.PerfilPageModule)
-  },  {
+  },
+  {
     path: 'notificaciones',
     loadChildren: () => import('./privado/notificaciones/notificaciones.module').then( m => m.NotificacionesPageModule)
   },
   {
     path: 'chat',
     loadChildren: () => import('./privado/chat/chat.module').then( m => m.ChatPageModule)
+  },
+  {
+    path: 'cirugia',
+    loadChildren: () => import('./privado/cirugia/cirugia.module').then( m => m.CirugiaPageModule)
+  },
+  {
+    path: 'patologia',
+    loadChildren: () => import('./privado/patologia/patologia.module').then( m => m.PatologiaPageModule)
+  },
+  {
+    path: 'det-patologia/:idPatologia',
+    loadChildren: () => import('./privado/detalles/det-patologia/det-patologia.module').then( m => m.DetPatologiaPageModule)
+  },
+  {
+    path: 'det-cirugia',
+    loadChildren: () => import('./privado/detalles/det-cirugia/det-cirugia.module').then( m => m.DetCirugiaPageModule)
+  },  {
+    path: 'det-dpersonales',
+    loadChildren: () => import('./privado/detalles/det-dpersonales/det-dpersonales.module').then( m => m.DetDpersonalesPageModule)
   }
+
+
 
 ];
 @NgModule({
