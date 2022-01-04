@@ -1,4 +1,4 @@
-import { Boton } from "./boton";
+import { Boton } from "./Boton";
 
 export class Mensaje{
     user:string;

@@ -1,4 +1,4 @@
-import { DireccionClinica } from "./direccionClinica";
+import { DireccionClinica } from "./DireccionClinica";
 
 export class Clinica {
     clinicaId: number;

@@ -1,11 +1,13 @@
+import { MedicoEspecialidad } from "./Medico_espe";
+import { MedicoSubespecialidad } from "./Medico_sub";
 
 export class Medico{
-    id:string;
-    apellidos: string;
+    usuarioId:string;
+    apellido: string;
     email: string;
-    nombres: string;
+    nombre: string;
     numeroContacto: string;
-    username: string;
     descripcion:string;
-    estado:string;
+    especialidades: Array<MedicoEspecialidad>
+    subespecialidades: Array<MedicoSubespecialidad>
 }

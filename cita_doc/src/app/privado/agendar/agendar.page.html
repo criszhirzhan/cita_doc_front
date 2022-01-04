@@ -19,10 +19,13 @@
 <ion-content>
   <ion-slide>
     <ion-text >
-      <img src="../../../assets/images/logo.png"> 
-      <h1>Dory</h1>
+      <img style="width: 60%; height: 60%;" src="../../../assets/images/dory.png"> 
+      <h3>Licenciada Dory</h3>
       <p>Se encarga de agendar tus citas en el horario de tu elección</p>
-      <ion-button (click)="start()" fill="outline" >Agendar</ion-button>
+      <!-- <ion-button (click)="start()" fill="outline" >Agendar</ion-button> -->
+      <ion-chip (click)="start()" color="secondary">
+        <ion-label><b>Agendar</b></ion-label>
+      </ion-chip>
     </ion-text>
   </ion-slide>
 </ion-content>

@@ -1,0 +1,120 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+
+    <ion-title class="ion-text-center">Detalle Médico</ion-title>
+
+    <ion-buttons slot="start">
+      <ion-button (click)="volver()" fill="clear">
+        <ion-icon name="chevron-back-sharp"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+  <ion-card>
+    <ion-row>
+      <ion-col>
+        <center><img class="imgC" style="height: 105px; width: 92px;" src="../../../assets/images/doctorPerfil.png" />
+        </center>
+
+
+
+        <ion-buttons>
+          <h4 slot="start">Datos personales </h4>
+          <ion-button slot="end" style="color: rgb(24, 142, 197);" fill="clear">
+       
+          </ion-button>
+        </ion-buttons>
+
+        <ion-card>
+          <p>Nombres: {{medico.nombre}}</p>
+        </ion-card>
+        <ion-card>
+          <p>Apellidos: {{medico.apellido}}</p>
+        </ion-card>
+        <ion-card>
+          <p>Correo: {{medico.email}}</p>
+        </ion-card>
+        <ion-card>
+          <p>Numero contacto: {{medico.numeroContacto}}</p>
+        </ion-card>
+
+
+        <ion-buttons>
+          <h4 slot="start">Datos académicos </h4>
+        </ion-buttons>
+
+
+        <ion-buttons>
+          <h5 slot="start">Especialidades</h5>
+          <ion-button slot="end" style="color: rgb(24, 142, 197);" fill="clear">
+
+          </ion-button>
+        </ion-buttons>
+
+        <ion-card>
+
+          <ion-col *ngIf="tamEspecialidades !== 0">
+            <ion-list>
+              <ion-item *ngFor="let especialidad of medico.especialidades">
+                <ion-label >
+                  <!-- <h3>Nombre:</h3> -->
+                  <p>{{especialidad.especialidad.nombre}}</p>
+                </ion-label>
+              </ion-item>
+            </ion-list>
+          </ion-col>
+
+          <ion-col *ngIf="tamEspecialidades === 0">
+            <ion-label>
+              <ion-row>
+                <p>Sin Especialidades</p>
+              </ion-row>
+            </ion-label>
+          </ion-col>
+
+        </ion-card>
+
+
+
+        <ion-buttons>
+          <h5 slot="start">Subespecialidades</h5>
+          <ion-button slot="end" style="color: rgb(24, 142, 197);" fill="clear">
+
+          </ion-button>
+        </ion-buttons>
+
+        <ion-card>
+
+          <ion-col *ngIf="tamSubespecialidades !== 0">
+            <ion-list>
+              <ion-item *ngFor="let subespecialidad of medico.subespecialidades">
+                <ion-label >
+                  <!-- <h3>Nombre:</h3> -->
+                  <p>{{subespecialidad.subespecialidad.nombre}}</p>
+                </ion-label>
+              </ion-item>
+            </ion-list>
+          </ion-col>
+
+          <ion-col *ngIf="tamSubespecialidades === 0">
+            <ion-label>
+              <ion-row>
+                <p>Sin Subespecialidades</p>
+              </ion-row>
+            </ion-label>
+          </ion-col>
+
+        </ion-card>
+
+
+      </ion-col>
+    </ion-row>
+  </ion-card>
+
+</ion-content>

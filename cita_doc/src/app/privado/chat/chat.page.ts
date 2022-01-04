@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { IonContent } from '@ionic/angular';
 import { ChatService } from 'src/app/services/chat.service';
-import { Mensaje } from 'src/app/models/mensaje';
+import { Mensaje } from 'src/app/models/Mensaje';
 import { Observable } from 'rxjs';
-import { Boton } from 'src/app/models/boton';
+import { Boton } from 'src/app/models/Boton';
 import { ConstantPool } from '@angular/compiler';
 import { TokenService } from 'src/app/services/token.service';
 import { Router } from '@angular/router';

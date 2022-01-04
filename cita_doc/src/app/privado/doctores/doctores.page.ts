@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { DoctorService } from 'src/app/services/doctor.service';
 import { TokenService } from 'src/app/services/token.service';
-import { Medico } from 'src/app/models/medico';
-import { Clinica } from 'src/app/models/clinica';
+import { Medico } from 'src/app/models/Medico';
+import { Clinica } from 'src/app/models/Clinica';
 import { ClinicaService } from 'src/app/services/clinica.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -21,8 +22,10 @@ export class DoctoresPage implements OnInit {
   clinicas: Clinica[] = [];
   idClinica: number;
 
-  constructor(private tokenService: TokenService, private doctorService: DoctorService,
-    private clinicaService: ClinicaService) { }
+  constructor(private tokenService: TokenService, 
+    private doctorService: DoctorService,
+    private clinicaService: ClinicaService,
+    private router: Router) { }
 
   ngOnInit() {
     this.listarDoctores()
@@ -37,57 +40,19 @@ export class DoctoresPage implements OnInit {
   }
 
 
-
-  async listarDoctores() {
-    return this.doctorService.getDoctores().subscribe(data => {
-      this.medList = data
-      this.medicos = []
-      console.log(data)
-
-      this.medList.forEach(medico => {
-        this.medico.id = medico['usuarioId']
-        this.medico.nombres = medico['nombre']
-        this.medico.apellidos = medico['apellido']
-        this.medico.email = medico['email']
-        this.medico.descripcion = medico['descripcion']
-        this.medico.estado = medico['estado']
-        this.medico.numeroContacto = medico['numeroContacto']
-        this.medicos.push(this.medico);
-        this.medico = new Medico();
-      });
-
+  listarDoctores(){
+    this.doctorService.getDoctores().subscribe((data: Medico)=>{
+      this.medicos= JSON.parse(JSON.stringify(data));
     });
 
   }
 
-  async listarDoctoresClinica() {
-    if(this.idClinica!==0){
-      return this.doctorService.getDoctoresClinica(this.idClinica).subscribe(data => {
-        console.log('Medicos por clinica: ', data);
-        this.medList = data
-        this.medicos = []
-        console.log(data)
-  
-        this.medList.forEach(medico => {
-          this.medico.id = medico['usuarioId']
-          this.medico.nombres = medico['nombre']
-          this.medico.apellidos = medico['apellido']
-          this.medico.email = medico['email']
-          this.medico.descripcion = medico['descripcion']
-          this.medico.estado = medico['estado']
-          this.medico.numeroContacto = medico['numeroContacto']
-          this.medicos.push(this.medico);
-          this.medico = new Medico();
-        });
-  
-      });
 
-    }else{
-      this.listarDoctores()
-    }
+  verMedico(idMedico: number){
+    console.log('Id medico: ', idMedico)
+    const url = 'det-medico/' + idMedico;
+    this.router.navigateByUrl(url)
   }
-
-
 
 }
 

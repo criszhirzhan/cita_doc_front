@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Enfermedad } from '../models/enfermedad';
+import { Enfermedad } from '../models/Enfermedad';
 import { TokenService } from './token.service';
 
 @Injectable({
@@ -26,7 +26,7 @@ export class EnfermedadService {
   
   updateEnfermedad(enfermedad: Enfermedad): Observable<any>{
 
-    return this.http.put<any>(this.url+'/update/'+enfermedad.enfermedadId, enfermedad, {headers: this.headers_obj});
+    return this.http.post<any>(this.url+'/update', enfermedad, {headers: this.headers_obj});
 
   }
 }

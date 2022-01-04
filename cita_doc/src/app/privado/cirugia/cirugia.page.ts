@@ -3,10 +3,10 @@ import { format, parseISO } from 'date-fns';
 import { IonDatetime } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { CirugiaService } from 'src/app/services/cirugia.service';
-import { Cirugia } from 'src/app/models/cirugia';
+import { Cirugia } from 'src/app/models/Cirugia';
 import { PacienteService } from 'src/app/services/paciente.service';
-import { Paciente } from 'src/app/models/paciente';
-import { PacienteCirugia } from 'src/app/models/paciente_cirg';
+import { Paciente } from 'src/app/models/Paciente';
+import { PacienteCirugia } from 'src/app/models/Paciente_cirg';
 import { FormularioPacienteCirugia } from 'src/app/models/formularios/formularioRegPacCirg';
 import { TokenService } from 'src/app/services/token.service';
 

@@ -22,6 +22,8 @@
 
   </ion-toolbar>
 </ion-header>
+
+
 <ion-content fullscreen>
   <form #form="ngForm">
     <ion-list lines="full" class="ion-no-margin ion-no-padding">
@@ -63,7 +65,7 @@
     </ion-list>
 
     <div class="ion-padding">
-      <ion-button [disabled]="form.invalid" expand="block" type="submit" (click)="actualizarP()" class="ion-no-margin">Actualizar</ion-button>
+      <ion-button [disabled]="form.invalid" expand="block" type="submit" (click)="actualizarE()" class="ion-no-margin">Actualizar</ion-button>
     </div>
   </form>
 </ion-content>

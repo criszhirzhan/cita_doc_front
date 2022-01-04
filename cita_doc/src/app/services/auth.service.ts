@@ -3,8 +3,8 @@ import { Observable } from 'rxjs';
 
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Login } from '../models/login';
-import { Jwt } from '../models/jwt';
+import { Login } from '../models/Login';
+import { Jwt } from '../models/Jwt';
 
 
 

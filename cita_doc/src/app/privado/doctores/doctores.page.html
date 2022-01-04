@@ -19,23 +19,23 @@
 <ion-content [fullscreen]="true">
 
 <ion-item>
+
   <ion-label>Clinicas</ion-label>
-  <ion-select class="custom-options" [(ngModel)]="idClinica" interface="popover">
+  <ion-select class="custom-options" [(ngModel)]="filtradoC" interface="popover">
     <ion-select-option [value]="0">Todas</ion-select-option>
-    <ion-select-option *ngFor="let clinica of clinicas" [value]="clinica.clinicaId">{{clinica.nombreClinica}}</ion-select-option>
+    <ion-select-option *ngFor="let clinica of clinicas" [value]="clinica.nombreClinica">{{clinica.nombreClinica}}</ion-select-option>
 
   </ion-select>
+
 </ion-item>
 
-
-  <ion-button (click)="listarDoctoresClinica()" shape="round">Filtrar</ion-button>
   <ion-searchbar placeholder="Buscar..." [(ngModel)]="filterTerm" name="filterTerm" animated="true"></ion-searchbar>
     <ion-grid no-padding class="home-gallery">
     <ion-row class="ion-text-center">
-      <ion-col  size="6" *ngFor="let doctor of medicos  | filter:filterTerm"> 
-        <ion-card>   
+      <ion-col  size="6" *ngFor="let doctor of medicos  | filter:filterTerm | filter:filtradoC"> 
+        <ion-card (click)="verMedico(doctor.usuarioId)">   
           <img src="../../../assets/images/doctorPerfil.png">
-          <div class="card-title">{{doctor.nombres}} {{doctor.apellidos}}</div>
+          <div class="card-title">{{doctor.nombre}} {{doctor.apellido}}</div>
           <div>{{ doctor.descripcion }}</div>  
         </ion-card>
     </ion-col>

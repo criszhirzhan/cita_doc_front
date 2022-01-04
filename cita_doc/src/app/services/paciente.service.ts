@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { TokenService } from './token.service';
-import { Paciente } from '../models/paciente';
+import { Paciente } from '../models/Paciente';
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +27,10 @@ export class PacienteService {
   headers_obj = new HttpHeaders().set("Authorization","Bearer "+this.tokenService.getToken());
   getPacienteJSON(): Observable<Paciente>{
     return this.http.get<Paciente>(this.api+'/'+this.tokenService.getUserId(),{headers: this.headers_obj});
+  }
+
+  updatePaciente(paciente: Paciente): Observable<any>{
+    return this.http.post<any>(this.api+'/update/'+this.tokenService.getUserId(), paciente, {headers: this.headers_obj} )
   }
 
 

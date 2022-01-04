@@ -1,8 +1,8 @@
 export class Cita{
-    idCita: string;
+    citaId: string;
     sintomas: string;
     medico: string;
     clinica: string;
-    fecha: string;
+    fechaCita: string;
     espeacialidad: string;
 }

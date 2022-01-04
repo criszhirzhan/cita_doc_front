@@ -1,5 +1,5 @@
-import { Direccion } from "./direccion";
-import { Paciente } from "./paciente";
+import { Direccion } from "./Direccion";
+import { Paciente } from "./Paciente";
 
 export class DireccionPaciente{
     direccionPacienteId: number;

@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { FormularioRegistroPatologia } from '../models/formularios/formularioRegPatologia';
-import { PacientePatologia } from '../models/paciente_Patol';
+import { PacientePatologia } from '../models/Paciente_Patol';
 import { TokenService } from './token.service';
 
 @Injectable({
@@ -28,8 +28,8 @@ export class PatologiaService {
 
   }
 
-  updatePatologia(patologia: PacientePatologia): Observable<any>{
-    return this.http.put<any>(this.url+'/update', patologia, {headers: this.headers_obj});
+  updatePatologia(formulario: FormularioRegistroPatologia): Observable<any>{
+    return this.http.post<any>(this.url+'/update', formulario, {headers: this.headers_obj});
   }
 
 }

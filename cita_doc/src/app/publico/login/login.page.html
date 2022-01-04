@@ -1,42 +1,62 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Login</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+
+    <ion-title class="ion-text-center">Iniciar Sesión
+    </ion-title>
+
+
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <div  class="products_list_img">
     <!-- <img  style="height: 200px; width: 200px;" [src]="src\assets\images\ (click)="verMoneda(moneda)" /> -->
-    <ion-slide><img src="../../../assets/images/logo.png"/></ion-slide>
+    <ion-slide><img src="../../../assets/images/logo2.png"/></ion-slide>
   </div>   
   <form>
     <ion-item lines="full">
-      <ion-label position="floating">Correo electrónico</ion-label>
-      <ion-input [(ngModel)]="login.email" name="email1" type="text" #email required></ion-input>
+      <ion-label position="floating"><ion-icon name="person-outline"></ion-icon> Correo electrónico </ion-label>
+      <ion-input [(ngModel)]="login.email" name="email1" type="text" #email  required></ion-input>
     </ion-item>
     <ion-item lines="full">
-      <ion-label position="floating">Contraseña</ion-label>
-      <ion-input [(ngModel)]="login.password" type="password" name="contraseña1" #password required></ion-input>
+      <ion-label position="floating"><ion-icon name="lock-closed-outline"></ion-icon> Contraseña</ion-label>
+      <ion-input [(ngModel)]="login.password" type="password" name="contraseña1" #password  required></ion-input>
     </ion-item>
     <ion-row>
       <ion-col>
-        <ion-button type="submit" (click)="onLogin()" expand="block">Ingresar</ion-button>
+        <!-- <ion-button type="submit" (click)="ingresar()" expand="block">Ingresar</ion-button> -->
+        <section class="full-width">
+          <ion-button expand="full" (click)="ingresar()"  color="secondary">Ingresar</ion-button>
+        </section>
       </ion-col>
     </ion-row>
-    <ion-row>
+    <!-- <ion-row>
       <ion-col>
         <p class="ion-text-end">
-          <a routerLink="/forgot-password">Forgot password? </a>
+          <a routerLink="/forgot-password">¿Olvidó su contraseña? </a>
         </p>
       </ion-col>
-    </ion-row>
-    <span class="center-span"> or </span>
+    </ion-row> -->
+    <ion-col>
+      <div class="ion-text-center">
+        <span > o </span>
+      </div>
+    </ion-col>
+    
     <ion-row>
       <ion-col>
-        <ion-button type="submit" color="danger" routerLink="/registro" expand="block"
-          >Registrate
-        </ion-button>
+        <!-- <ion-button type="submit" color="danger" routerLink="/registro" expand="block"> 
+          <ion-icon name="person-add-outline"></ion-icon> Registrate
+        </ion-button> -->
+
+        <section class="full-width">
+          <ion-button expand="full" routerLink="/registro"  color="success">
+            <ion-icon name="person-add-outline"></ion-icon> Registrate</ion-button>
+        </section>
       </ion-col>
-    </ion-row>
+    </ion-row> 
   </form>
 </ion-content>

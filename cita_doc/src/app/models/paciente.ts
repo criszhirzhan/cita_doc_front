@@ -1,7 +1,7 @@
-import { Cita } from "./cita";
-import { DireccionPaciente } from "./direccion_pac";
-import { PacienteCirugia } from "./paciente_cirg";
-import { PacientePatologia } from "./paciente_Patol";
+import { Cita } from "./Cita";
+import { DireccionPaciente } from "./Direccion_pac";
+import { PacienteCirugia } from "./Paciente_cirg";
+import { PacientePatologia } from "./Paciente_Patol";
 
 export class Paciente{
     apellido: string;

@@ -1,5 +1,5 @@
-import { Enfermedad } from "./enfermedad";
-import { Paciente } from "./paciente";
+import { Enfermedad } from "./Enfermedad";
+import { Paciente } from "./Paciente";
 
 export class PacientePatologia{
     pacientePatologiaId: number;

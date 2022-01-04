@@ -1,0 +1,82 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+
+    <ion-title class="ion-text-center">Direccion</ion-title>
+
+    <ion-buttons slot="start">
+      <ion-button (click)="volver()" fill="clear">
+        <ion-icon name="chevron-back-sharp"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    
+
+    <ion-buttons slot="end">
+      <ion-button (click)="presentAlertConfirm()" fill="clear">
+        <ion-icon style="color: red;" name="trash"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <form #form="ngForm">
+    <ion-list lines="full" class="ion-no-margin ion-no-padding">
+
+      <ion-item>
+        <ion-label>Tipo dirección </ion-label>
+        <ion-select [(ngModel)]="direccionP.tipo" name="tipoP" class="custom-options" interface="popover">
+          <ion-select-option [value]="domicilio">Domicilio</ion-select-option>
+          <ion-select-option [value]="trabajo">Trabajo</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+
+      <ion-item>
+        <ion-label position="floating">Pais<ion-text color="danger">*</ion-text>
+        </ion-label>
+        <ion-input  [(ngModel)]="direccion.pais" name="pais"   type="text" ngModel required ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Provincia<ion-text color="danger">*</ion-text>
+        </ion-label>
+        <ion-input  [(ngModel)]="direccion.provincia" name="provincia"   type="text" ngModel required ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Ciudad<ion-text color="danger">*</ion-text>
+        </ion-label>
+        <ion-input  [(ngModel)]="direccion.ciudad" name="ciudad"   type="text" ngModel required ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Calle principal<ion-text color="danger">*</ion-text>
+        </ion-label>
+        <ion-input  [(ngModel)]="direccion.callePrincipal" name="callePrincipal"   type="text" ngModel required ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Calle secundaria<ion-text color="danger">*</ion-text>
+        </ion-label>
+        <ion-input  [(ngModel)]="direccion.calleSecundaria" name="calleSecundaria"   type="text" ngModel required ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Referencia<ion-text color="danger">*</ion-text>
+        </ion-label>
+        <ion-input  [(ngModel)]="direccion.referencia" name="referencia"   type="text" ngModel required ></ion-input>
+      </ion-item>
+
+    </ion-list>
+
+    <div class="ion-padding">
+      <ion-button [disabled]="form.invalid" [disabled]="disabled" expand="block" type="submit" (click)="actualizarDireccion()" class="ion-no-margin">Actualizar</ion-button>
+    </div>
+  </form>
+</ion-content>

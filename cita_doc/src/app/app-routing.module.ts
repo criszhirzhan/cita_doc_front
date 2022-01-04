@@ -51,12 +51,31 @@ const routes: Routes = [
     loadChildren: () => import('./privado/detalles/det-patologia/det-patologia.module').then( m => m.DetPatologiaPageModule)
   },
   {
-    path: 'det-cirugia',
+    path: 'det-cirugia/:idCirugia',
     loadChildren: () => import('./privado/detalles/det-cirugia/det-cirugia.module').then( m => m.DetCirugiaPageModule)
-  },  {
+  },
+  {
     path: 'det-dpersonales',
     loadChildren: () => import('./privado/detalles/det-dpersonales/det-dpersonales.module').then( m => m.DetDpersonalesPageModule)
+  },
+  {
+    path: 'direccion',
+    loadChildren: () => import('./privado/direccion/direccion.module').then( m => m.DireccionPageModule)
+  },
+  {
+    path: 'det-direccion/:idDireccion',
+    loadChildren: () => import('./privado/detalles/det-direccion/det-direccion.module').then( m => m.DetDireccionPageModule)
+  },
+  {
+    path: 'det-medico/:idMedico',
+    loadChildren: () => import('./privado/detalles/det-medico/det-medico.module').then( m => m.DetMedicoPageModule)
+  },
+  {
+    path: 'det-cita/:idCita',
+    loadChildren: () => import('./privado/detalles/det-cita/det-cita.module').then( m => m.DetCitaPageModule)
   }
+
+
 
 
 

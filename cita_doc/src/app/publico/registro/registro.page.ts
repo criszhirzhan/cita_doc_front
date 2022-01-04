@@ -1,9 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { IonDatetime } from '@ionic/angular';
 import { format, parseISO } from 'date-fns';
-import { Paciente } from 'src/app/models/paciente';
+import { Paciente } from 'src/app/models/Paciente';
 import { RegistroService } from 'src/app/services/registro.service';
 import { Router } from '@angular/router';
+import { ToastController } from '@ionic/angular';
+import { FormGroup } from '@angular/forms';
+
 
 
 @Component({
@@ -14,9 +17,15 @@ import { Router } from '@angular/router';
 export class RegistroPage implements OnInit {
 
   dateValue = '';
+
   @ViewChild(IonDatetime, { static: true }) datetime: IonDatetime;
 
-  constructor(private registroService: RegistroService) { }
+  signupForm2: FormGroup;
+  submitted2 = false;
+
+  constructor(private registroService: RegistroService,
+    private router: Router,
+    public toastController: ToastController) { }
   paciente : Paciente = new Paciente(); 
   ngOnInit() {
   }
@@ -37,15 +46,58 @@ export class RegistroPage implements OnInit {
     //console.log('Guardando paciente')
     //console.log('Fecha Nacimiento')
     //console.log(this.dateValue)
-    this.paciente.fechaNacimiento=this.dateValue
+   // this.paciente.fechaNacimiento=this.dateValue
 
     //console.log('Paciente')
-    console.log(this.paciente)
 
-    this.registroService.registrarPaciente(this.paciente).subscribe(res=>{
-      alert(res);
-    })
+    
+
+    // console.log('Paciente creado: ',this.paciente)
+     this.registroService.registrarPaciente(this.paciente).subscribe((res)=>{
+       this.paciente= new Paciente()
+       console.log('status: ', res.status);
+      }, error=>{
+       if(error.status === 201){
+         
+        this.presentToast('Exito', 'Usted ha sido registrado','success');
+      }else{
+         this.presentToast('Error', 'Algo salio mal','danger');
+     }
+     });
 
   }
 
+  volver(){
+    this.router.navigateByUrl('/login')
+  }
+
+  // async presentToastOptions(header: string, message: string){
+  //   const toast = await this.toastCtrl.create({
+  //     header: header,
+  //     message: message,
+  //     position: 'top',
+  //     duration: 2000
+  //   });
+  //   await toast.present();
+  // }
+
+  async presentToast(header: string, mensaje: string, color: string) {
+    const toast = await this.toastController.create({
+      message: mensaje,
+      duration: 2000,
+      position: 'top',
+      color: color,
+      header: header
+    });
+    toast.present();
+  }
+
+
+
+
+
+
+
 }
+
+

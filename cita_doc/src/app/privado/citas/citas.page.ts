@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { closestTo } from 'date-fns';
 import { Observable } from 'rxjs';
-import { Cita } from 'src/app/models/cita';
+import { Cita } from 'src/app/models/Cita';
 import { CitasService } from 'src/app/services/citas.service';
 import { TokenService } from 'src/app/services/token.service';
 
@@ -15,35 +16,28 @@ export class CitasPage implements OnInit {
   citasList: Observable<any[]>;
   citas: Cita[]=[]
   cita: Cita = new Cita()
+  filtradoC: string
 
-  constructor(private tokenService: TokenService, private citasService: CitasService) { }
+  constructor(private tokenService: TokenService, 
+    private citasService: CitasService,
+    private router: Router) { }
 
   ngOnInit() {
     console.log('token id: ', this.tokenService.getUserId());
     this.listarCitas()
   }
 
-  async listarCitas(){
-
-    return this.citasService.getCitas().subscribe(data=>{
-      this.citasList=data
-
-      console.log(data)
-
-      this.citasList.forEach( cita =>{
-        this.cita.idCita=cita['citaId']
-        this.cita.clinica=cita['clinica']
-        this.cita.medico=cita['medico']
-        this.cita.sintomas=cita['sintomas']
-        this.cita.fecha=cita['fechaCita']
-        this.citas.push(this.cita);
-        this.cita=new Cita();
-
-      });
-
-      console.log(this.citas)
-
+  listarCitas(){
+    this.citasService.getCitas().subscribe((data:Cita)=>{
+      this.citas=JSON.parse(JSON.stringify(data));
     });
+  }
+
+
+  verCita(idCita: number){
+    console.log('Id cita: ', idCita)
+    const url = 'det-cita/' + idCita;
+    this.router.navigateByUrl(url)
   }
 
 }

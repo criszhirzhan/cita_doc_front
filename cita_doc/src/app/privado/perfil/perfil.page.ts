@@ -1,10 +1,12 @@
-import { TagDefinition } from '@angular/compiler';
+
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { roundToNearestMinutesWithOptions } from 'date-fns/fp';
-import { Paciente } from 'src/app/models/paciente';
+
+import { Paciente } from 'src/app/models/Paciente';
 import { PacienteService } from 'src/app/services/paciente.service';
 import { AlertController } from '@ionic/angular';
+
+
 
 @Component({
   selector: 'app-perfil',
@@ -63,6 +65,28 @@ export class PerfilPage implements OnInit {
 
   }
 
+  verDireccion(idDireccion: number){
+    console.log('Id direccion: ', idDireccion)
+    const url = 'det-direccion/' + idDireccion;
+    this.router.navigateByUrl(url)
+  }
+
+  verCirugia(idCirugia: number){
+    console.log('Id cirugia: ', idCirugia)
+    const url = 'det-cirugia/' + idCirugia;
+    this.router.navigateByUrl(url)
+  }
+
+  updateTipoSangre(paciente: Paciente){
+    this.servicePaciente.updatePaciente(paciente).subscribe((data: Paciente)=>{
+      this.paciente= new Paciente()
+      this.paciente=JSON.parse(JSON.stringify(data));
+      console.log('Paciente actualizado: ', this.paciente)
+
+    });
+
+  }
+
   async presentAlertPrompt() {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
@@ -112,18 +136,20 @@ export class PerfilPage implements OnInit {
       ],
       buttons: [
         {
-          text: 'Cancel',
+          text: 'Cancelar',
           role: 'cancel',
           cssClass: 'secondary',
           handler: () => {
             console.log('Confirm Cancel');
           }
         }, {
-          text: 'Ok',
+          text: 'Aceptar',
           handler: data  => {
             console.log('Confirm Ok');
             console.log('Tipo sangre: ', data);
-            
+            this.paciente.tipoSangre=data
+            console.log('Paciente actual: ',this.paciente)
+            this.updateTipoSangre(this.paciente)
            // this.moneda.url=data.URL;
           }
         }
@@ -135,6 +161,33 @@ export class PerfilPage implements OnInit {
 
   verDatosPersonales(){
     this.router.navigateByUrl('/det-dpersonales')
+  }
+
+  async presentAlertConfirm() {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Cerrar sesión',
+      message: '¿Seguro que quiere cerrar sesión?',
+      buttons: [
+        {
+          text: 'No',
+          role: 'cancel',
+          cssClass: 'secondary',
+          id: 'cancel-button',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+          }
+        }, {
+          text: 'Si',
+          id: 'confirm-button',
+          handler: () => {
+            console.log('Confirm Okay');
+          }
+        }
+      ]
+    });
+
+    await alert.present();
   }
 
   
