@@ -29,5 +29,20 @@ export class CirugiaService {
     return this.http.post<any>(this.urlPc, formulario)
   }
 
+  updateCirugiaPaciente(formulario: FormularioPacienteCirugia): Observable<any>{
+    return this.http.post<any>(this.urlPc+'/update',formulario)
+  }
 
+  updateCirugia(cirugia: Cirugia): Observable<any>{
+    return this.http.post<any>(this.url+'/update',cirugia)
+  }
+
+  deleteCirugiaPaciente(id: number): Observable<any>{
+    return this.http.post(this.urlPc+'/delete',id)
+  }
+
+  deleteCirugia(id: number): Observable<any>{
+    return this.http.post<any>(this.url+'/delete',id)
+  }
+  
 }

@@ -32,4 +32,8 @@ export class PatologiaService {
     return this.http.post<any>(this.url+'/update', formulario, {headers: this.headers_obj});
   }
 
+  deletePacientePatologia(id: number): Observable<any>{
+    return this.http.post<any>(this.url+'/delete',id, {headers: this.headers_obj})
+  }
+
 }

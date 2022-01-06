@@ -6,6 +6,8 @@ import { PacientePatologia } from 'src/app/models/Paciente_Patol';
 import { EnfermedadService } from 'src/app/services/enfermedad.service';
 import { PatologiaService } from 'src/app/services/patologia.service';
 import { TokenService } from 'src/app/services/token.service';
+import { ToastController } from '@ionic/angular';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-det-patologia',
@@ -18,12 +20,14 @@ export class DetPatologiaPage implements OnInit {
   private patologia: PacientePatologia
   private enfermedadP: Enfermedad
   private formulario: FormularioRegistroPatologia
-
+  errMessage = ''
   constructor(private route: ActivatedRoute,
     public router: Router,
     private patologiaService: PatologiaService,
     private tokenService: TokenService,
-    private enfermedadService: EnfermedadService) {
+    private enfermedadService: EnfermedadService,
+    private toastController: ToastController,
+    public alertController: AlertController) {
 
     this.formulario = new FormularioRegistroPatologia()
 
@@ -49,7 +53,6 @@ export class DetPatologiaPage implements OnInit {
   }
 
   actualizarP() {
-
     console.log('Patologia previa act: ', this.patologia)
     this.formulario.idPaciente=this.tokenService.getUserId()
     this.formulario.idEnfermedad=this.patologia.enfermedad.enfermedadId
@@ -78,6 +81,63 @@ export class DetPatologiaPage implements OnInit {
 
   volver(){
     this.router.navigateByUrl('/tabs/perfil')
+  }
+
+  async presentAlertConfirm() {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Eliminar patología',
+      message: '¿Seguro que quiere eliminar la patología?',
+      buttons: [
+        {
+          text: 'No',
+          role: 'cancel',
+          cssClass: 'secondary',
+          id: 'cancel-button',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+          }
+        }, {
+          text: 'Si',
+          id: 'confirm-button',
+          handler: () => {
+            console.log('Confirm Okay');
+            this.eliminar()
+            
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+
+  eliminar(){
+    this.patologiaService.deletePacientePatologia(this.patologia.pacientePatologiaId).subscribe(data=>{
+
+    },
+    error => {
+      if (error.status === 200) {
+
+        this.presentToast('Exito', 'La patología se eliminó correctamente', 'success');
+        this.router.navigateByUrl('/det-dpersonales')
+      } else {
+        this.presentToast('Fallo', 'No se pudo eliminar la patología', 'danger');
+      }
+    }
+    
+    );
+  }
+
+  async presentToast(header: string, mensaje: string, color: string) {
+    const toast = await this.toastController.create({
+      message: mensaje,
+      duration: 2000,
+      position: 'top',
+      color: color,
+      header: header
+    });
+    toast.present();
   }
 
 }

@@ -6,6 +6,7 @@ import { FormularioDireccionPaciente } from 'src/app/models/formularios/formular
 import { DireccionService } from 'src/app/services/direccion.service';
 import { TokenService } from 'src/app/services/token.service';
 import { AlertController } from '@ionic/angular';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-det-direccion',
@@ -18,12 +19,13 @@ export class DetDireccionPage implements OnInit {
   direccion: Direccion
   direccionP: DireccionPaciente
   formulario: FormularioDireccionPaciente
-
+  errMessage = ''
   constructor(private router: Router,
     private direccionService: DireccionService,
     private route: ActivatedRoute,
     private tokenService: TokenService,
-    public alertController: AlertController) { 
+    public alertController: AlertController,
+    private toastController: ToastController) { 
 
       this.formulario= new FormularioDireccionPaciente()
       this.direccion= new Direccion()
@@ -96,10 +98,8 @@ export class DetDireccionPage implements OnInit {
           id: 'confirm-button',
           handler: () => {
             console.log('Confirm Okay');
-            this.direccionService.deletePacienteDireccion(this.direccionP.direccionPacienteId).subscribe(data=>{});
-            this.direccionService.deleteDireccion(this.direccion.direccionId).subscribe(data=>{});
-
-            this.router.navigateByUrl('/det-dpersonales')
+            this.eliminar()
+            
           }
         }
       ]
@@ -108,10 +108,41 @@ export class DetDireccionPage implements OnInit {
     await alert.present();
   }
 
+  eliminar(){
+    this.direccionService.deletePacienteDireccion(this.direccionP.direccionPacienteId).subscribe(data=>{
+
+
+    },
+    error => {
+      if (error.status === 200) {
+
+        this.presentToast('Exito', 'La dirección se eliminó correctamente', 'success');
+        this.router.navigateByUrl('/det-dpersonales')
+      } else {
+        this.presentToast('Fallo', 'No se pudo eliminar la dirección', 'danger');
+      }
+    }
+    
+    );
+    
+    
+    //this.direccionService.deleteDireccion(this.direccion.direccionId).subscribe(data=>{});
+
+  }
+
   volver(){
     this.router.navigateByUrl('/det-dpersonales')
   }
 
-
+  async presentToast(header: string, mensaje: string, color: string) {
+    const toast = await this.toastController.create({
+      message: mensaje,
+      duration: 2000,
+      position: 'top',
+      color: color,
+      header: header
+    });
+    toast.present();
+  }
 
 }

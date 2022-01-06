@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { format, parseISO } from 'date-fns';
-import { IonDatetime } from '@ionic/angular';
+import { IonDatetime, ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { CirugiaService } from 'src/app/services/cirugia.service';
 import { Cirugia } from 'src/app/models/Cirugia';
@@ -30,14 +30,13 @@ export class CirugiaPage implements OnInit {
 
   constructor(private router: Router, 
     private cirugiaService: CirugiaService,
-    private tokerService: TokenService) {
-      this.cirugia = new Cirugia()
-      this.paciente= new Paciente()
-      this.formularioPC = new FormularioPacienteCirugia()
-     
-     }
+    private tokerService: TokenService,
+    private toastController: ToastController) { }
 
   ngOnInit() {
+    this.cirugia = new Cirugia()
+    this.paciente= new Paciente()
+    this.formularioPC = new FormularioPacienteCirugia()
   }
 
   confirm() {
@@ -59,7 +58,7 @@ export class CirugiaPage implements OnInit {
 
   addCirugia(){
    // console.log('Guardar: ', this.dateValue)
-    this.cirugia.fechaProcedimiento=this.dateValue;
+    //this.cirugia.fechaProcedimiento=this.dateValue;
 
     console.log('Cirugia generada: ',this.cirugia)
     this.cirugiaService.guardarCirugia(this.cirugia).subscribe((data: Cirugia)=>{
@@ -83,8 +82,30 @@ export class CirugiaPage implements OnInit {
 
       console.log('Paciente cirugia agregado: ',data)
       this.formularioPC= new FormularioPacienteCirugia()
-    });
+    },
+    error => {
+      if (error.status === 200) {
 
+        this.presentToast('Exito', 'La cirugía se registró correctamente', 'success');
+        
+      } else {
+        this.presentToast('Fallo', 'No se pudo registró la cirugía', 'danger');
+      }
+    }
+    
+    );
+
+  }
+
+  async presentToast(header: string, mensaje: string, color: string) {
+    const toast = await this.toastController.create({
+      message: mensaje,
+      duration: 2000,
+      position: 'top',
+      color: color,
+      header: header
+    });
+    toast.present();
   }
 
 }

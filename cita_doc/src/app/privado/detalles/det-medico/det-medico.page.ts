@@ -38,6 +38,7 @@ export class DetMedicoPage implements OnInit {
   getMedico(idMedico: number){
     this.medicoService.getMedico(idMedico).subscribe((data: Medico)=>{
       this.medico= JSON.parse(JSON.stringify(data));
+      console.log('Medico: ',this.medico)
       this.validarDatos(this.medico)
     });
 

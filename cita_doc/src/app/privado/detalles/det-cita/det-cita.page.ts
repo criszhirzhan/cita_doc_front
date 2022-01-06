@@ -3,7 +3,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Cita } from 'src/app/models/Cita';
 import { CitasService } from 'src/app/services/citas.service';
 import { AlertController } from '@ionic/angular';
-
+import { ToastController } from '@ionic/angular';
+import { CitaPaciente } from 'src/app/models/Cita_p';
 @Component({
   selector: 'app-det-cita',
   templateUrl: './det-cita.page.html',
@@ -12,25 +13,32 @@ import { AlertController } from '@ionic/angular';
 export class DetCitaPage implements OnInit {
 
   cita: Cita
+  citaPaciente: CitaPaciente
   idCita: number
 
   constructor(private router: Router,
     private citaService: CitasService,
     private route: ActivatedRoute,
-    public alertController: AlertController) { 
+    public alertController: AlertController,
+    private toastController: ToastController) { 
       this.cita= new Cita()
+      this.citaPaciente= new CitaPaciente()
       this.idCita= Number(this.route.snapshot.paramMap.get('idCita'));
       this.getCitaDetalle(this.idCita)
+     
       
     }
 
   ngOnInit() {
+    this.getCita(this.idCita)
   }
 
   getCita(id: number){
-    this.citaService.getCita(id).subscribe((data: Cita)=>{
-      // this.cita=JSON.parse(JSON.stringify(data));
-      // console.log('Cita recuperada: ', this.cita)
+    this.citaService.getCita(id).subscribe((data: CitaPaciente)=>{
+       this.citaPaciente=JSON.parse(JSON.stringify(data));
+       console.log('Cita recuperada DATA: ', this.citaPaciente)
+       console.log('ID CITA DATA: ',this.citaPaciente.citaId)
+       console.log('Cita estado: ',this.citaPaciente.estado)
     });
 
   }
@@ -65,6 +73,7 @@ export class DetCitaPage implements OnInit {
           id: 'confirm-button',
           handler: () => {
             console.log('Confirm Okay');
+            this.cancelar()
           }
         }
       ]
@@ -72,5 +81,37 @@ export class DetCitaPage implements OnInit {
 
     await alert.present();
   }
+
+  cancelar(){
+    this.citaPaciente.estado='cancelada'
+    this.citaService.updateCita(this.citaPaciente).subscribe(data=>{
+      this.citaPaciente= new CitaPaciente()
+
+    },
+    error => {
+      if (error.status === 200) {
+
+        this.presentToast('Exito', 'La cita se canceló correctamente', 'success');
+        this.router.navigateByUrl('/tabs/citas')
+      } else {
+        this.presentToast('Fallo', 'No se pudo cancelar la cita', 'danger');
+      }
+    }
+    
+    );
+  }
+
+  async presentToast(header: string, mensaje: string, color: string) {
+    const toast = await this.toastController.create({
+      message: mensaje,
+      duration: 2000,
+      position: 'top',
+      color: color,
+      header: header
+    });
+    toast.present();
+  }
+
+  
 
 }

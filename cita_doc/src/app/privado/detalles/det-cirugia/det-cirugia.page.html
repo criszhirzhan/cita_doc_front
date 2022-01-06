@@ -4,7 +4,7 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
 
-    <ion-title class="ion-text-center">Detalle cirugía</ion-title>
+    <ion-title class="ion-text-center">Detalle Cirugía</ion-title>
 
     <ion-buttons slot="start">
       <ion-button (click)="volver()" fill="clear">
@@ -12,6 +12,11 @@
       </ion-button>
     </ion-buttons>
 
+    <ion-buttons slot="end">
+      <ion-button (click)="presentAlertConfirm()" fill="clear">
+        <ion-icon style="color: red;" name="trash"></ion-icon>
+      </ion-button>
+    </ion-buttons>
 
 
   </ion-toolbar>
@@ -35,13 +40,13 @@
       <ion-item>
         <ion-item button="true" id="open-date-input">
           <ion-label>Fecha de cirugía</ion-label>
-          <ion-text slot="end">{{ pacienteCirugia.fechaProcedimiento }}</ion-text>
+          <ion-text slot="end">{{ cirugia.fechaProcedimiento }}</ion-text>
           <ion-popover trigger="open-date-input" show-backdrop="false">
             <ng-template>
               <ion-datetime
                 #popoverDatetime
                 presentation="date"
-                (ionChange)="pacienteCirugia.fechaProcedimiento = formatDate(popoverDatetime.value)"
+                (ionChange)="cirugia.fechaProcedimiento = formatDate(popoverDatetime.value)"
               ></ion-datetime>
             </ng-template>
           </ion-popover>
@@ -57,7 +62,7 @@
     </ion-list>
 
     <div class="ion-padding">
-      <ion-button [disabled]="form.invalid" expand="block" type="submit" (click)="updateCirugiaP()" class="ion-no-margin">Actualizar cirugía</ion-button>
+      <ion-button [disabled]="form.invalid" expand="block" type="submit" (click)="actualizarCirugia()" class="ion-no-margin">Actualizar cirugía</ion-button>
     </div>
   </form>
 </ion-content>

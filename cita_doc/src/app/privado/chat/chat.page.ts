@@ -105,7 +105,7 @@ export class ChatPage implements OnInit {
         this.mensajesList = new Observable
       });
     }else{
-      return this.chatservice.postMessage(mensaje)
+      return this.chatservice.postMessage(mensaje).subscribe(data=>{});
     }
   }
 

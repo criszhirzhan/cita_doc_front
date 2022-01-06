@@ -25,7 +25,7 @@
 
       <ion-item>
         <ion-label>Tipo </ion-label>
-        <ion-select [(ngModel)]="formularioPC.tipo" name="tipoPC" class="custom-options" interface="popover">
+        <ion-select [(ngModel)]="formularioPC.tipo" name="tipoPC" class="custom-options" interface="popover" ngModel required>
           <ion-select-option [value]="cirugia_mayor">cirugía mayor</ion-select-option>
           <ion-select-option [value]="cirugia_menor">cirugía menor</ion-select-option>
 
@@ -35,13 +35,13 @@
       <ion-item>
         <ion-item button="true" id="open-date-input">
           <ion-label>Fecha de cirugía</ion-label>
-          <ion-text slot="end">{{ dateValue }}</ion-text>
+          <ion-text slot="end">{{ cirugia.fechaProcedimiento }}</ion-text>
           <ion-popover trigger="open-date-input" show-backdrop="false">
             <ng-template>
               <ion-datetime
                 #popoverDatetime
                 presentation="date"
-                (ionChange)="dateValue = formatDate(popoverDatetime.value)"
+                (ionChange)="cirugia.fechaProcedimiento = formatDate(popoverDatetime.value)"
               ></ion-datetime>
             </ng-template>
           </ion-popover>
