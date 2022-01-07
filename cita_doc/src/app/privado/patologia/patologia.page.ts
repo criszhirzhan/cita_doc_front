@@ -39,7 +39,6 @@ export class PatologiaPage implements OnInit {
     this.patologia= new PacientePatologia()
     this.paciente= new Paciente()
     this.p= new Paciente()
-
   
   }
 
@@ -59,6 +58,7 @@ export class PatologiaPage implements OnInit {
      // this.paciente.pacientePatologias.push(this.patologia)
       this.patologia=new PacientePatologia()
       this.formulario = new FormularioRegistroPatologia()
+      this.volver()
       console.log('Patologia creada: ',data)
     });
 

@@ -117,7 +117,7 @@ export class DetDireccionPage implements OnInit {
       if (error.status === 200) {
 
         this.presentToast('Exito', 'La dirección se eliminó correctamente', 'success');
-        this.router.navigateByUrl('/det-dpersonales')
+        this.volver()
       } else {
         this.presentToast('Fallo', 'No se pudo eliminar la dirección', 'danger');
       }
@@ -131,7 +131,7 @@ export class DetDireccionPage implements OnInit {
   }
 
   volver(){
-    this.router.navigateByUrl('/det-dpersonales')
+    this.router.navigateByUrl('/tabs/perfil/det-dpersonales')
   }
 
   async presentToast(header: string, mensaje: string, color: string) {

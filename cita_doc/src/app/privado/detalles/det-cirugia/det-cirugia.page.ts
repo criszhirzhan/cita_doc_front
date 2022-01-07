@@ -102,7 +102,7 @@ export class DetCirugiaPage implements OnInit {
         if (error.status === 200) {
 
           this.presentToast('Exito', 'La cirugía se eliminó correctamente', 'success');
-          this.router.navigateByUrl('/perfil')
+          this.volver()
         } else {
           this.presentToast('Fallo', 'No se pudo eliminar la cirugía', 'danger');
         }

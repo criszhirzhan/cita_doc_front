@@ -18,7 +18,7 @@ export class AgendarPage implements OnInit {
   }
 
   start(){
-    this.router.navigateByUrl('/chat')
+    this.router.navigateByUrl('/tabs/agendar/chat')
   }
 
 }

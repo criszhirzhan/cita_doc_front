@@ -27,6 +27,11 @@ export class CitasPage implements OnInit {
     this.listarCitas()
   }
 
+  ionViewWillEnter(){
+    console.log('Refrescando: ')
+    this.listarCitas(); 
+   }
+
   listarCitas(){
     this.citasService.getCitas().subscribe((data:Cita)=>{
       this.citas=JSON.parse(JSON.stringify(data));
@@ -36,7 +41,7 @@ export class CitasPage implements OnInit {
 
   verCita(idCita: number){
     console.log('Id cita: ', idCita)
-    const url = 'det-cita/' + idCita;
+    const url = '/tabs/citas/det-cita/' + idCita;
     this.router.navigateByUrl(url)
   }
 

@@ -80,7 +80,8 @@ export class DetPatologiaPage implements OnInit {
   }
 
   volver(){
-    this.router.navigateByUrl('/tabs/perfil')
+    const url = '/tabs/perfil';
+    this.router.navigate([url]);
   }
 
   async presentAlertConfirm() {
@@ -120,7 +121,7 @@ export class DetPatologiaPage implements OnInit {
       if (error.status === 200) {
 
         this.presentToast('Exito', 'La patología se eliminó correctamente', 'success');
-        this.router.navigateByUrl('/det-dpersonales')
+        this.volver()
       } else {
         this.presentToast('Fallo', 'No se pudo eliminar la patología', 'danger');
       }

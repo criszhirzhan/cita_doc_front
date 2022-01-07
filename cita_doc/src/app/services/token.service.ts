@@ -1,25 +1,44 @@
 import { Injectable } from '@angular/core';
-import  jwt_decode  from 'jwt-decode';
+import { Storage } from '@capacitor/storage';
+import jwt_decode from 'jwt-decode';
+import { BehaviorSubject } from 'rxjs';
 
 const TOKEN_KEY='AuthToken';
-const USER_ID='userId';
-const EMAIL = 'email';
-const NOMBRE ='nombre';
-const APELLIDO ='apellido';
+const USER_ID='AuthUserId';
+const EMAIL = 'AuthEmail';
+const NOMBRE ='AuthNombre';
+const APELLIDO ='AuthApellido';
 @Injectable({
   providedIn: 'root'
 })
 export class TokenService {
 
+  isAuthenticated: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(null);
+  token='';
   constructor() { }
+
+  async loadToken(){
+    const token = await Storage.get({key: TOKEN_KEY});
+    if(token && token.value){
+      console.log('set token: ', token.value);
+      this.token = token.value;
+      this.isAuthenticated.next(true);
+    }else{
+      this.isAuthenticated.next(false);
+    }
+  }
 
   public logOut(): void{
     window.sessionStorage.clear();
+    Storage.clear();
+    this.isAuthenticated.next(false);
   }
 
   public setToken(token: string): void{
     window.sessionStorage.removeItem(TOKEN_KEY);
     window.sessionStorage.setItem(TOKEN_KEY, token);
+    Storage.set({key: TOKEN_KEY, value: token});
+    this.isAuthenticated.next(true);
   }
 
   public getToken(): string{
@@ -31,10 +50,6 @@ export class TokenService {
     window.sessionStorage.setItem(USER_ID, userId);
   }
 
-  // public getUserId(): string{
-  //   return window.sessionStorage.getItem(USER_ID);
-  // }
-
   public getUserId(): number{
     return this.getDecodedAccessToken(this.getToken()).userId;
   }
@@ -45,7 +60,7 @@ export class TokenService {
   }
 
   public getEmail(): string{
-    return this.getDecodedAccessToken(this.getToken()).email;
+    return window.sessionStorage.getItem(EMAIL);
   }
 
   public setNombre(nombre: string): void{
@@ -64,6 +79,10 @@ export class TokenService {
 
   public getApellido(): string{
     return this.getDecodedAccessToken(this.getToken()).apellido;
+  }
+
+  public getProfesion(): string{
+    return this.getDecodedAccessToken(this.getToken()).profesion;
   }
 
 

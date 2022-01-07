@@ -33,6 +33,8 @@ export class DetCitaPage implements OnInit {
     this.getCita(this.idCita)
   }
 
+
+
   getCita(id: number){
     this.citaService.getCita(id).subscribe((data: CitaPaciente)=>{
        this.citaPaciente=JSON.parse(JSON.stringify(data));
@@ -92,7 +94,7 @@ export class DetCitaPage implements OnInit {
       if (error.status === 200) {
 
         this.presentToast('Exito', 'La cita se canceló correctamente', 'success');
-        this.router.navigateByUrl('/tabs/citas')
+        this.volver()
       } else {
         this.presentToast('Fallo', 'No se pudo cancelar la cita', 'danger');
       }

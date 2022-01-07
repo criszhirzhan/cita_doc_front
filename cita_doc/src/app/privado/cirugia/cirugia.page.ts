@@ -18,6 +18,7 @@ import { TokenService } from 'src/app/services/token.service';
 export class CirugiaPage implements OnInit {
 
   dateValue = '';
+  dateValue2='';
   cirugia: Cirugia;
   paciente: Paciente
   formularioPC: FormularioPacienteCirugia
@@ -25,19 +26,22 @@ export class CirugiaPage implements OnInit {
 
   @ViewChild(IonDatetime, { static: true }) datetime: IonDatetime;
 
-
-
-
   constructor(private router: Router, 
     private cirugiaService: CirugiaService,
     private tokerService: TokenService,
     private toastController: ToastController) { }
 
   ngOnInit() {
+    
     this.cirugia = new Cirugia()
     this.paciente= new Paciente()
     this.formularioPC = new FormularioPacienteCirugia()
   }
+
+  ionViewWillEnter(){
+
+
+   }
 
   confirm() {
     this.datetime.confirm();
@@ -82,6 +86,7 @@ export class CirugiaPage implements OnInit {
 
       console.log('Paciente cirugia agregado: ',data)
       this.formularioPC= new FormularioPacienteCirugia()
+      this.volver()
     },
     error => {
       if (error.status === 200) {

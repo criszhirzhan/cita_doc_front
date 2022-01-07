@@ -30,10 +30,16 @@ export class DetDpersonalesPage implements OnInit {
 
   ngOnInit() {
     this.getPerfil()
-    this.dateValue=this.paciente.fechaNacimiento
     console.log('Paciente: ', this.paciente)
 
   }
+
+  
+ ionViewWillEnter(){
+  
+  console.log('Refrescando')
+  this.getPerfil(); 
+ }
 
 
   confirm() {
@@ -61,12 +67,12 @@ export class DetDpersonalesPage implements OnInit {
   }
 
   agregarDireccion(){
-    this.router.navigateByUrl('/direccion')
+    this.router.navigateByUrl('/tabs/perfil/det-dpersonales/direccion')
   }
 
   verDireccion(idDireccion: number){
     console.log('Id direccion: ', idDireccion)
-    const url = 'det-direccion/' + idDireccion;
+    const url = '/tabs/perfil/det-dpersonales/det-direccion/' + idDireccion;
     this.router.navigateByUrl(url)
   }
 

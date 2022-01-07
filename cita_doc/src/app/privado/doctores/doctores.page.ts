@@ -43,6 +43,7 @@ export class DoctoresPage implements OnInit {
   listarDoctores(){
     this.doctorService.getDoctores().subscribe((data: Medico)=>{
       this.medicos= JSON.parse(JSON.stringify(data));
+      console.log(this.medicos)
     });
 
   }
@@ -50,7 +51,7 @@ export class DoctoresPage implements OnInit {
 
   verMedico(idMedico: number){
     console.log('Id medico: ', idMedico)
-    const url = 'det-medico/' + idMedico;
+    const url = '/tabs/doctores/det-medico/' + idMedico;
     this.router.navigateByUrl(url)
   }
 

@@ -30,8 +30,15 @@ export class DireccionPage implements OnInit {
   ngOnInit() {
   }
 
+  
+ ionViewWillEnter(){
+  this.direccion= new Direccion()
+  this.direccionP = new DireccionPaciente()
+  this.formulario = new FormularioDireccionPaciente()
+ }
+
   volver(){
-    this.router.navigateByUrl('/det-dpersonales')
+    this.router.navigateByUrl('/tabs/perfil/det-dpersonales')
   }
 
   addDireccion(){

@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Paciente } from 'src/app/models/Paciente';
 import { PacienteService } from 'src/app/services/paciente.service';
 import { AlertController } from '@ionic/angular';
+import { TokenService } from 'src/app/services/token.service';
 
 
 
@@ -24,13 +25,35 @@ export class PerfilPage implements OnInit {
 
   constructor(private router: Router, 
     private servicePaciente: PacienteService,
-    public alertController: AlertController) { }
+    public alertController: AlertController,
+    public tokenService: TokenService) { }
 
   ngOnInit() {
+    
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    this.router.onSameUrlNavigation = 'reload';
     this.paciente= new Paciente()
     this.getPerfil();
     
   }
+
+ ionViewWillEnter(){
+  
+   console.log('Refrescando')
+   this.getPerfil(); 
+  }
+
+  //  ionViewDidEnter(){
+  //    console.log('ViewDIDEnter')
+  //  }
+
+  //  ionViewWillLeave(){
+  //    console.log('ionViewWillLeave')
+  //  }
+
+  //  ionViewDidLeave(){
+  //   console.log('ionViewDidLeave')
+  //  }
 
   getPerfil(){
     this.servicePaciente.getPacienteJSON().subscribe((data: Paciente)=>{
@@ -51,29 +74,29 @@ export class PerfilPage implements OnInit {
   }
 
   cirugias(){
-    this.router.navigateByUrl('/cirugia')
+
+    this.router.navigateByUrl('/tabs/perfil/cirugia')
   }
 
   patologias(){
-    this.router.navigateByUrl('/patologia')
+    this.router.navigateByUrl('/tabs/perfil/patologia')
   }
 
   ver(idPatologia: number){
     console.log('Id patologia: ', idPatologia)
-    const url = 'det-patologia/' + idPatologia;
-    this.router.navigateByUrl(url)
-
+    const url = '/tabs/perfil/det-patologia/' + idPatologia;
+    this.router.navigate([url]);
   }
 
   verDireccion(idDireccion: number){
     console.log('Id direccion: ', idDireccion)
-    const url = 'det-direccion/' + idDireccion;
+    const url = '/tabs/perfil/det-direccion/' + idDireccion;
     this.router.navigateByUrl(url)
   }
 
   verCirugia(idCirugia: number){
     console.log('Id cirugia: ', idCirugia)
-    const url = 'det-cirugia/' + idCirugia;
+    const url = '/tabs/perfil/det-cirugia/' + idCirugia;
     this.router.navigateByUrl(url)
   }
 
@@ -160,7 +183,7 @@ export class PerfilPage implements OnInit {
   }
 
   verDatosPersonales(){
-    this.router.navigateByUrl('/det-dpersonales')
+    this.router.navigateByUrl('/tabs/perfil/det-dpersonales')
   }
 
   async presentAlertConfirm() {
@@ -182,12 +205,18 @@ export class PerfilPage implements OnInit {
           id: 'confirm-button',
           handler: () => {
             console.log('Confirm Okay');
+            this.cerrarSesion()
           }
         }
       ]
     });
 
     await alert.present();
+  }
+
+  cerrarSesion(){
+    this.tokenService.logOut()
+    this.router.navigateByUrl('/login')
   }
 
   

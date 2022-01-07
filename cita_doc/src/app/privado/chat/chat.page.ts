@@ -134,6 +134,6 @@ export class ChatPage implements OnInit {
 
     this.mensajes = []
     this.botones = []
-    this.router.navigateByUrl('/tabs/citas')
+    this.router.navigateByUrl('/tabs/agendar')
   }
 }
