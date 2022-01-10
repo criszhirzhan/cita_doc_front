@@ -45,4 +45,13 @@ export class CitasPage implements OnInit {
     this.router.navigateByUrl(url)
   }
 
+  doRefresh(event) {
+    console.log('Begin async operation');
+
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      event.target.complete();
+    }, 2000);
+  }
+
 }

@@ -60,6 +60,7 @@ export class RegistroPage implements OnInit {
        if(error.status === 201){
          
         this.presentToast('Exito', 'Usted ha sido registrado','success');
+        this.volver()
       }else{
          this.presentToast('Error', 'Algo salio mal','danger');
      }
@@ -68,6 +69,7 @@ export class RegistroPage implements OnInit {
   }
 
   volver(){
+    this.paciente= new Paciente()
     this.router.navigateByUrl('/login')
   }
 

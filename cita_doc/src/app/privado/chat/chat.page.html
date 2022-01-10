@@ -25,7 +25,7 @@
         <br>
        <ion-col *ngIf="message.buttons !== undefined">
          <ion-row *ngFor="let boton of message.buttons">
-          <ion-button  color="success" (click)="sendRespuesta(boton)">{{boton.title}}</ion-button>
+          <ion-button [disabled]=boton.estado  color="success" (click)="sendRespuesta(boton)">{{boton.title}}</ion-button>
          </ion-row>
        </ion-col>
       </ion-col>

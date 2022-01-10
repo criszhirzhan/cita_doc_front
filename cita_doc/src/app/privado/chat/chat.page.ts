@@ -77,6 +77,9 @@ export class ChatPage implements OnInit {
               this.boton.title = boton['title']
               this.boton.payload = boton['payload']
 
+              //Nueva linea
+              this.boton.estado=false
+
               //GUARDAR LOS VALORES EN EL VECTOR
               this.botones.push(this.boton)
               console.log(this.botones)
@@ -121,7 +124,18 @@ export class ChatPage implements OnInit {
     setTimeout(() => {
       this.content.scrollToBottom(200);
     });
+    this.desactivarOpciones()
     this.mensaje = new Mensaje()
+  }
+
+  desactivarOpciones(){
+    this.mensajes.forEach(mensaje=>{
+      if(mensaje.buttons !== undefined){
+        mensaje.buttons.forEach(boton=>{
+          boton.estado=true
+        })
+      }
+    })
   }
 
   volver() {
