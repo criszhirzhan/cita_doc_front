@@ -1,0 +1,71 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+
+    <ion-title class="ion-text-center">Detalle Cita</ion-title>
+
+    <ion-buttons slot="start">
+      <ion-button (click)="volver()" fill="clear">
+        <ion-icon name="chevron-back-sharp"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+  <ion-buttons slot="start">
+    <ion-back-button defaultHref="/"></ion-back-button>
+  </ion-buttons>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>Fecha y hora </ion-card-subtitle>
+    </ion-card-header>
+  
+    <ion-card-content>
+      {{cita.fechaCita}}
+    </ion-card-content>
+  </ion-card>
+
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>Síntomas</ion-card-subtitle>
+    </ion-card-header>
+  
+    <ion-card-content>
+      {{cita.sintomas}}
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>Médico </ion-card-subtitle>
+    </ion-card-header>
+  
+    <ion-card-content>
+      {{cita.medico}}
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>Clínica </ion-card-subtitle>
+    </ion-card-header>
+  
+    <ion-card-content>
+      {{cita.clinica}}
+    </ion-card-content>
+  </ion-card>
+  <section>
+
+    <center>
+      <ion-chip (click)="presentAlertConfirm()" color="danger">
+        <ion-label>Cancelar cita</ion-label>
+      </ion-chip>
+    </center>
+  </section>
+</ion-content>

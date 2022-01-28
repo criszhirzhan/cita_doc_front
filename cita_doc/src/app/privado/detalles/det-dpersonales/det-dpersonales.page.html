@@ -1,0 +1,134 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+
+    <ion-title class="ion-text-center">Datos Personales</ion-title>
+
+    <ion-buttons slot="start">
+      <ion-button (click)="volver()" fill="clear">
+        <ion-icon name="chevron-back-sharp"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher> 
+
+
+
+  <form #form="ngForm" (ngSubmit)="register(form)">
+    <ion-grid>
+      <ion-row color="primary" justify-content-center>
+        <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+          <div padding>
+            <ion-item>
+              <ion-input #fName="ngModel" pattern="[a-zA-Z ]*" [(ngModel)]="paciente.nombre" name="fName" type="text" placeholder="Nombres" ngModel
+                required></ion-input>
+            </ion-item>
+            <div class="form-error" *ngIf="fName.errors && (fName.dirty || fName.touched)">
+              <ion-text color="danger" *ngIf="fName.errors">Ingrese solo letras</ion-text>
+            </div>
+            <br>
+            <ion-item>
+              <ion-input [(ngModel)]="paciente.apellido" name="fApellido" #fApellido="ngModel" pattern="[a-zA-Z ]*" type="text" placeholder="Apellidos" ngModel
+                required></ion-input>
+            </ion-item>
+            <div class="form-error" *ngIf="fApellido.errors && (fApellido.dirty || fApellido.touched)">
+              <ion-text color="danger" *ngIf="fApellido.errors">Ingrese solo letras</ion-text>
+            </div>
+            <br>
+      
+            <ion-item button="true" id="open-date-input">
+              <ion-label>Fecha de nacimiento</ion-label>
+              <ion-text slot="end">{{ paciente.fechaNacimiento }}</ion-text>
+              <ion-popover trigger="open-date-input" show-backdrop="false">
+                <ng-template>
+                  <ion-datetime
+                    #popoverDatetime
+                    presentation="date"
+
+                    (ionChange)="paciente.fechaNacimiento = formatDate(popoverDatetime.value)"
+                  ></ion-datetime>
+                </ng-template>
+              </ion-popover>
+            </ion-item>
+        
+            <br>
+            <ion-item>
+              <ion-input  maxlength="10" minlength="10" [(ngModel)]="paciente.numeroContacto" name="contact_number" #contact_number="ngModel" pattern="[0-9]*" type="text"
+                placeholder="Número de contacto" ngModel required></ion-input>
+            </ion-item>
+            <div class="form-error" *ngIf="contact_number.errors && (contact_number.dirty || contact_number.touched)">
+              <ion-text color="danger" *ngIf="contact_number.errors">Ingrese 10 dígitos numéricos</ion-text>
+             
+            </div>
+            <br>
+
+            <ion-item>
+            <ion-buttons>
+              <ion-label>Direcciones</ion-label>
+              <ion-button (click)="agregarDireccion()" slot="end" style="color: rgb(24, 142, 197);" fill="clear">
+                <ion-icon name="add-circle"></ion-icon>
+              </ion-button>
+            </ion-buttons>
+
+          </ion-item>
+            <ion-item>
+
+              <ion-list>
+                <ion-item *ngFor="let direccion of paciente.direccionPacientes">
+                  <ion-label (click)="verDireccion(direccion.direccionPacienteId)">
+                    <p>Tipo: {{direccion.tipo}}</p>
+                    <p>Pais: {{direccion.direccion.pais}}</p>
+                    <p>Provincia: {{direccion.direccion.provincia}}</p>
+                    <p>Calle principal: {{direccion.direccion.callePrincipal}}</p>
+                    <p>Calle secundaria: {{direccion.direccion.calleSecundaria}}</p>
+                  </ion-label>
+                </ion-item>
+              </ion-list>
+
+            </ion-item>
+
+            <ion-item>
+              <ion-label>Genero </ion-label>
+              <ion-select [(ngModel)]="paciente.genero" name="genero" class="custom-options" interface="popover">
+                <ion-select-option [value]="masculino">Masculino</ion-select-option>
+                <ion-select-option [value]="femenino">Femenino</ion-select-option>
+        
+              </ion-select>
+            </ion-item>
+
+            <br>
+            <!-- <ion-item>
+              <ion-input [(ngModel)]="paciente.email" name="email" type="email" placeholder="your@email.com" ngModel
+                required></ion-input>
+            </ion-item> -->
+            <ion-item>
+              <ion-input [disabled]='true' [(ngModel)]="paciente.email" name="email" type="email" placeholder="your@email.com" 
+                ></ion-input>
+            </ion-item>
+            <br>
+          </div>
+          <div padding>
+
+            <center>
+              <ion-chip type="submit" (click)="actualizarPaciente()" [disabled]="form.invalid" color="secondary" expand="block">
+                <ion-label>Actualizar datos</ion-label>
+              </ion-chip>
+            </center>
+
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+
+
+</ion-content>

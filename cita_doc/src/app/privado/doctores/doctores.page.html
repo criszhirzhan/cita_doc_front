@@ -1,21 +1,51 @@
 <ion-header>
-  <ion-toolbar >
+  <ion-toolbar>
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
 
     <ion-title class="ion-text-center">Doctores</ion-title>
 
-    <ion-buttons slot="end">
+    <!-- <ion-buttons slot="end">
       <ion-button fill="clear">
         <ion-icon name="notifications-outline"></ion-icon>
         <ion-badge>2</ion-badge>
       </ion-button>
-    </ion-buttons>
+    </ion-buttons> -->
 
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content [fullscreen]="true">
+
+  <ion-item>
+
+    <ion-label>Clínicas</ion-label>
+    <ion-select class="custom-options" [(ngModel)]="filtradoC" interface="popover">
+      <ion-select-option [value]="0">Todas</ion-select-option>
+      <ion-select-option *ngFor="let clinica of clinicas" [value]="clinica.nombreClinica">{{clinica.nombreClinica}}
+      </ion-select-option>
+
+    </ion-select>
+
+  </ion-item>
+
+  <ion-searchbar placeholder="Buscar..." [(ngModel)]="filterTerm" name="filterTerm" animated="true"></ion-searchbar>
+  
+  
+  <ion-refresher slot="fixed" pullFactor="0.5" pullMin="100" pullMax="200" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-grid no-padding class="home-gallery">
+    <ion-row class="ion-text-center">
+      <ion-col size="6" *ngFor="let doctor of medicos  | filter:filterTerm | filter:filtradoC">
+        <ion-card (click)="verMedico(doctor.usuarioId)">
+          <img src="../../../assets/images/doctorPerfil.png">
+          <div class="card-title">{{doctor.nombre}} {{doctor.apellido}}</div>
+          <div>{{ doctor.descripcion }}</div>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
 </ion-content>

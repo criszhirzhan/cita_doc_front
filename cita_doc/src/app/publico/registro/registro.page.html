@@ -1,89 +1,108 @@
-<ion-content  color="secondary">
-  <form  #form="ngForm" (ngSubmit)="register(form)">
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+
+    <ion-title class="ion-text-center">Registro</ion-title>
+
+    <ion-buttons slot="start">
+      <ion-button (click)="volver()" fill="clear">
+        <ion-icon name="chevron-back-sharp"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+<ion-content  >
+  <form  #form="ngForm" >
     <ion-grid>
       <ion-row color="primary" justify-content-center>
         <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
-          <div text-center>
-            <h3>Registro</h3>
-          </div>
           <div padding>
             <ion-item>
-              <ion-input [(ngModel)]="paciente.nombre"  name="nombres" type="text" placeholder="Nombres" ngModel required></ion-input>
+              <ion-input [(ngModel)]="paciente.nombre" name="fName" #fName="ngModel" pattern="[a-zA-Z ]*" type="text" placeholder="Nombres" ngModel required></ion-input>
             </ion-item>
+            <div class="form-error" *ngIf="fName.errors && (fName.dirty || fName.touched)">
+              <ion-text color="danger" *ngIf="fName.errors">Ingrese solo letras</ion-text>
+            </div>
             <br>
             <ion-item>
-              <ion-input [(ngModel)]="paciente.apellido"  name="apellidos" type="text" placeholder="Apellidos" ngModel required></ion-input>
+              <ion-input [(ngModel)]="paciente.apellido"  name="fApellido" #fApellido="ngModel" pattern="[a-zA-Z ]*" type="text" placeholder="Apellidos" ngModel required></ion-input>
             </ion-item>
+            <div class="form-error" *ngIf="fApellido.errors && (fApellido.dirty || fApellido.touched)">
+              <ion-text color="danger" *ngIf="fApellido.errors">Ingrese solo letras</ion-text>
+            </div>
             <br>
-            <ion-item>
+           
               <ion-item button="true" id="open-date-input">
                 <ion-label>Fecha de nacimiento</ion-label>
-                <ion-text slot="end">{{ dateValue }}</ion-text>
-                <ion-popover trigger="open-date-input" show-backdrop="false">
+                <ion-text slot="end">{{ paciente.fechaNacimiento }}</ion-text>
+                <ion-popover  trigger="open-date-input" show-backdrop="false">
                   <ng-template>
                     <ion-datetime
                       #popoverDatetime
                       presentation="date"
-                      (ionChange)="dateValue = formatDate(popoverDatetime.value)"
+
+                      (ionChange)="paciente.fechaNacimiento = formatDate(popoverDatetime.value)"
                     ></ion-datetime>
                   </ng-template>
                 </ion-popover>
               </ion-item>
+
+           
+            <br>
+            <ion-item>
+              <ion-input maxlength="10" minlength="10" [(ngModel)]="paciente.numeroContacto" name="contact_number" #contact_number="ngModel" pattern="[0-9]*"   type="text" placeholder="Numero de contacto" ngModel required></ion-input>
+            </ion-item>
+            <div class="form-error" *ngIf="contact_number.errors && (contact_number.dirty || contact_number.touched)">
+              <ion-text color="danger" *ngIf="contact_number.errors">Ingrese 10 dígitos numéricos</ion-text>
+             
+            </div>
+   
+            <br>
+            <ion-item>
+              <ion-label>Genero </ion-label>
+              <ion-select [(ngModel)]="paciente.genero" name="genero" class="custom-options" ngModel required interface="popover">
+                <ion-select-option [value]="masculino">Masculino</ion-select-option>
+                <ion-select-option [value]="femenino">Femenino</ion-select-option>
+              </ion-select>
             </ion-item>
             <br>
             <ion-item>
-              <ion-input [(ngModel)]="paciente.numeroContacto"  name="contact_number" type="text" placeholder="Numero de contacto" ngModel required></ion-input>
+              <ion-input [(ngModel)]="paciente.email" #email="ngModel" name="email"  type="email" placeholder="your@email.com" ngModel required ></ion-input>
             </ion-item>
+
             <br>
             <ion-item>
-              <ion-list>
-                <ion-radio-group [(ngModel)]="paciente.genero" name="genero" value="ninguno">
-                  <ion-list-header>
-                    <ion-label>Genero</ion-label>
-                  </ion-list-header>
-              
-                  <ion-item>
-                    <ion-label>Masculino</ion-label>
-                    <ion-radio  name="radioM" slot="start" value="masculino"></ion-radio>
-                  </ion-item>
-              
-                  <ion-item>
-                    <ion-label>Femenino</ion-label>
-                    <ion-radio  name="radioF" slot="start" value="femenino"></ion-radio>
-                  </ion-item>
-              
-                  <ion-item>
-                    <ion-label>Ninguno</ion-label>
-                    <ion-radio  name="radioN" slot="start" value="ninguno"></ion-radio>
-                  </ion-item>
-                </ion-radio-group>
-              </ion-list>
+              <ion-input minlength="8" [(ngModel)]="paciente.password" name="contrasena" #contrasena="ngModel" type="password" placeholder="Contraseña" ngModel required></ion-input>
             </ion-item>
+            <div class="form-error" *ngIf="contrasena.errors && (contrasena.dirty || contrasena.touched)">
+              <ion-text color="danger" *ngIf="contrasena.errors">La contraseña debe tener mínimo 8 caracteres</ion-text>
+             
+            </div>
             <br>
             <ion-item>
-              <ion-input [(ngModel)]="paciente.email" name="email" type="email" placeholder="your@email.com" ngModel required></ion-input>
+              <ion-input [(ngModel)]="passConfirm" name="confirm" type="password" placeholder="Repetir contraseña" ngModel required></ion-input>
             </ion-item>
-            <br>
-            <ion-item>
-              <ion-input [(ngModel)]="paciente.password" name="contraseña" type="password" placeholder="Contraseña" ngModel required></ion-input>
-            </ion-item>
-            <br>
-            <ion-item>
-              <ion-input name="confirm" type="password" placeholder="Repetir contraseña" ngModel required></ion-input>
-            </ion-item>
+
           </div>
           <div padding>
-            <ion-button  size="large" type="submit" (click)="guardarPaciente()" [disabled]="form.invalid" expand="block">Registrar</ion-button>
+
+            <section class="full-width">
+              <ion-button type="submit"  [disabled]="form.invalid" expand="full" (click)="guardarPaciente()" color="secondary">Registrar</ion-button>
+            </section>
+          
           </div>
         </ion-col>
       </ion-row>
-      <ion-row>
+      <!-- <ion-row>
         <ion-col>
           <p class="ion-text-end">
             <a routerLink="/login">Inicar sesión </a>
           </p>
         </ion-col>
-      </ion-row>
+      </ion-row> -->
     </ion-grid>
-  </form>
+  </form> 
 </ion-content>

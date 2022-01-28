@@ -6,16 +6,39 @@
 
     <ion-title class="ion-text-center">Agendar</ion-title>
 
-    <ion-buttons slot="end">
-      <ion-button fill="clear">
+    <!-- <ion-buttons slot="end">
+      <ion-button (click)="verNotificaciones()"fill="clear">
         <ion-icon name="notifications-outline"></ion-icon>
         <ion-badge>2</ion-badge>
       </ion-button>
-    </ion-buttons>
+    </ion-buttons> -->
 
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-slide>
+    <ion-text >
+      <img style="width: 60%; height: 60%;" src="../../../assets/images/dory.png"> 
 
+
+      <ion-grid>
+        <ion-row>
+          <ion-col class="ion-padding">
+            <div>
+              <h3>Licenciada Dory</h3>
+              <p>Se encarga de agendar tus citas en el horario de tu elección</p>
+              <!-- <ion-button (click)="start()" fill="outline" >Agendar</ion-button> -->
+              <ion-chip (click)="start()" color="secondary">
+                <ion-label><b>Agendar</b></ion-label>
+              </ion-chip>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+
+
+    </ion-text>
+  </ion-slide>
 </ion-content>

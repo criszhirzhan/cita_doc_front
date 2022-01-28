@@ -1,0 +1,71 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+
+    <ion-title class="ion-text-center">Detalle Patología</ion-title>
+
+    <ion-buttons slot="start">
+      <ion-button (click)="volver()" fill="clear">
+        <ion-icon name="chevron-back-sharp"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    
+
+    <ion-buttons slot="end">
+      <ion-button (click)="presentAlertConfirm()" fill="clear">
+        <ion-icon style="color: red;" name="trash"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content fullscreen>
+  <form #form="ngForm">
+    <ion-list lines="full" class="ion-no-margin ion-no-padding">
+
+      <ion-item>
+        <h6>Patologia</h6>
+      </ion-item>
+      <ion-item>
+        <ion-label>Tipo </ion-label>
+        <ion-select [(ngModel)]="patologia.tipo" name="tipoP" class="custom-options" interface="popover">
+          <ion-select-option [value]="familiar">Familiar</ion-select-option>
+          <ion-select-option [value]="personal">Personal</ion-select-option>
+
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <h6>Enfermedad</h6>
+      </ion-item>
+      <ion-item>
+        <ion-label>Tipo </ion-label>
+        <ion-select  [(ngModel)]="enfermedadP.tipo" name="tipoE" class="custom-options" interface="popover">
+          <ion-select-option [value]="enfermedad">Enfermedad</ion-select-option>
+          <ion-select-option [value]="alergia">Alergia</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Nombre enfermedad <ion-text color="danger">*</ion-text>
+        </ion-label>
+        <ion-input  [(ngModel)]="enfermedadP.nombre" name="nombre"   type="text" ngModel required ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Descripción enfermedad <ion-text color="danger">*</ion-text>
+        </ion-label>
+        <ion-textarea rows="6" cols="20"  [(ngModel)]="enfermedadP.descripcion" name="descripcion" ngModel required placeholder="Describa la enfermedad..."></ion-textarea>
+      </ion-item> 
+
+    </ion-list>
+
+    <div class="ion-padding">
+      <ion-button [disabled]="form.invalid" expand="block" type="submit" (click)="actualizarE()" class="ion-no-margin">Actualizar</ion-button>
+    </div>
+  </form>
+</ion-content>
