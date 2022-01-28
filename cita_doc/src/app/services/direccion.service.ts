@@ -10,8 +10,13 @@ import { FormularioDireccionPaciente } from '../models/formularios/formularioDir
 })
 export class DireccionService {
 
+  // urlDireccion='http://www.citasmedicaspepitas.info/api/public/direccion'
+  // urlDirPac='http://www.citasmedicaspepitas.info/paciente_direccion'
+
   urlDireccion='http://localhost:8090/api/public/direccion'
   urlDirPac='http://localhost:8090/paciente_direccion'
+
+  
 
   constructor(private http: HttpClient,
     private tokenService: TokenService) { }

@@ -26,9 +26,15 @@ export class PerfilPage implements OnInit {
   constructor(private router: Router, 
     private servicePaciente: PacienteService,
     public alertController: AlertController,
-    public tokenService: TokenService) { }
+    public tokenService: TokenService) {
+      if(this.tokenService.getToken()===""){
+        this.router.navigateByUrl('/login');
+      }
+     }
 
   ngOnInit() {
+
+
     
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     this.router.onSameUrlNavigation = 'reload';

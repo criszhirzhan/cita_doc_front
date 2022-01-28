@@ -21,8 +21,8 @@
       <ion-item>
         <ion-label>Tipo dirección </ion-label>
         <ion-select [(ngModel)]="formulario.tipo" name="tipoP" class="custom-options" interface="popover" ngModel required>
-          <ion-select-option [value]="domicilio">Domicilio</ion-select-option>
-          <ion-select-option [value]="trabajo">Trabajo</ion-select-option>
+          <ion-select-option [value]="residencia">Residencia</ion-select-option>
+          <ion-select-option [value]="origen">Origen</ion-select-option>
         </ion-select>
       </ion-item>
 
@@ -48,19 +48,19 @@
       <ion-item>
         <ion-label position="floating">Calle principal<ion-text color="danger">*</ion-text>
         </ion-label>
-        <ion-input  [(ngModel)]="direccion.callePrincipal" name="callePrincipal"   type="text" ngModel required ></ion-input>
+        <ion-input  [(ngModel)]="direccion.callePrincipal" name="callePrincipal" ngModel required   type="text" ></ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-label position="floating">Calle secundaria<ion-text color="danger">*</ion-text>
+        <ion-label position="floating">Calle secundaria<ion-text ></ion-text>
         </ion-label>
-        <ion-input  [(ngModel)]="direccion.calleSecundaria" name="calleSecundaria"   type="text" ngModel required ></ion-input>
+        <ion-input  [(ngModel)]="direccion.calleSecundaria" name="calleSecundaria"   type="text"  ></ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-label position="floating">Referencia<ion-text color="danger">*</ion-text>
+        <ion-label position="floating">Referencia<ion-text ></ion-text>
         </ion-label>
-        <ion-input  [(ngModel)]="direccion.referencia" name="referencia"   type="text" ngModel required ></ion-input>
+        <ion-input  [(ngModel)]="direccion.referencia" name="referencia"   type="text" ></ion-input>
       </ion-item>
 
     </ion-list>

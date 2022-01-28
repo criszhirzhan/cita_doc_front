@@ -29,15 +29,22 @@
 
 
       <ion-item>
-        <ion-label>Tipo </ion-label>
-        <ion-select [(ngModel)]="pacienteCirugia.tipo" name="tipoPC" class="custom-options" interface="popover">
-          <ion-select-option [value]="cirugia_mayor">cirugía mayor</ion-select-option>
-          <ion-select-option [value]="cirugia_menor">cirugía menor</ion-select-option>
 
+        <ion-label>Tipo cirugía</ion-label>
+        <ion-select [(ngModel)]="pacienteCirugia.tipo" name="tipoPC" class="custom-options" ngModel
+        required>
+          <ion-select-option [value]="cirugia_mayor">cirugía de emergencia</ion-select-option>
+          <ion-select-option [value]="cirugia_mayor">cirugía estética</ion-select-option>
+          <ion-select-option [value]="cirugia_menor">cirugía mayor</ion-select-option>
+          <ion-select-option [value]="cirugia_menor">cirugía menor</ion-select-option>
+          <ion-select-option [value]="cirugia_menor">cirugía cardíaca</ion-select-option>
+          <ion-select-option [value]="cirugia_menor">cirugía hepática</ion-select-option>
+          <ion-select-option [value]="cirugia_menor">cirugía abdominal</ion-select-option>
+          <ion-select-option [value]="cirugia_menor">cirugía mínimamente invasiva </ion-select-option>
         </ion-select>
       </ion-item>
 
-      <ion-item>
+     
         <ion-item button="true" id="open-date-input">
           <ion-label>Fecha de cirugía</ion-label>
           <ion-text slot="end">{{ cirugia.fechaProcedimiento }}</ion-text>
@@ -51,7 +58,7 @@
             </ng-template>
           </ion-popover>
         </ion-item>
-      </ion-item>
+     
 
       <ion-item>
         <ion-label position="floating">Descripción cirugía <ion-text color="danger">*</ion-text>

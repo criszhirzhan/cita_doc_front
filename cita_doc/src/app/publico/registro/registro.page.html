@@ -21,14 +21,14 @@
         <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
           <div padding>
             <ion-item>
-              <ion-input [(ngModel)]="paciente.nombre" name="fName" #fName="ngModel" pattern="[a-zA-Z]*" type="text" placeholder="Nombres" ngModel required></ion-input>
+              <ion-input [(ngModel)]="paciente.nombre" name="fName" #fName="ngModel" pattern="[a-zA-Z ]*" type="text" placeholder="Nombres" ngModel required></ion-input>
             </ion-item>
             <div class="form-error" *ngIf="fName.errors && (fName.dirty || fName.touched)">
               <ion-text color="danger" *ngIf="fName.errors">Ingrese solo letras</ion-text>
             </div>
             <br>
             <ion-item>
-              <ion-input [(ngModel)]="paciente.apellido"  name="fApellido" #fApellido="ngModel" pattern="[a-zA-Z]*" type="text" placeholder="Apellidos" ngModel required></ion-input>
+              <ion-input [(ngModel)]="paciente.apellido"  name="fApellido" #fApellido="ngModel" pattern="[a-zA-Z ]*" type="text" placeholder="Apellidos" ngModel required></ion-input>
             </ion-item>
             <div class="form-error" *ngIf="fApellido.errors && (fApellido.dirty || fApellido.touched)">
               <ion-text color="danger" *ngIf="fApellido.errors">Ingrese solo letras</ion-text>
@@ -75,12 +75,17 @@
 
             <br>
             <ion-item>
-              <ion-input [(ngModel)]="paciente.password" name="contraseña" type="password" placeholder="Contraseña" ngModel required></ion-input>
+              <ion-input minlength="8" [(ngModel)]="paciente.password" name="contrasena" #contrasena="ngModel" type="password" placeholder="Contraseña" ngModel required></ion-input>
             </ion-item>
+            <div class="form-error" *ngIf="contrasena.errors && (contrasena.dirty || contrasena.touched)">
+              <ion-text color="danger" *ngIf="contrasena.errors">La contraseña debe tener mínimo 8 caracteres</ion-text>
+             
+            </div>
             <br>
             <ion-item>
-              <ion-input name="confirm" type="password" placeholder="Repetir contraseña" ngModel required></ion-input>
+              <ion-input [(ngModel)]="passConfirm" name="confirm" type="password" placeholder="Repetir contraseña" ngModel required></ion-input>
             </ion-item>
+
           </div>
           <div padding>
 

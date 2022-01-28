@@ -8,8 +8,8 @@ import { Paciente } from '../models/Paciente';
 })
 export class RegistroService {
 
+  // url="http://www.citasmedicaspepitas.info/api/auth";
   url="http://localhost:8090/api/auth";
-
   #paciente_registro
 
   constructor(private http: HttpClient) { }

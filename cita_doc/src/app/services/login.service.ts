@@ -10,8 +10,8 @@ import { Jwt } from '../models/Jwt';
 })
 export class LoginService {
 
-  url="http://localhost:8090/api/auth";
-
+  // url='http://www.citasmedicaspepitas.info/api/auth';
+  url='http://localhost:8090/api/auth';
   constructor(private http: HttpClient) { }
 
   loginPaciente(login: Login): Observable<Jwt>{

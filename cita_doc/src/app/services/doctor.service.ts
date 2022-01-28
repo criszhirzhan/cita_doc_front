@@ -7,7 +7,9 @@ import { Observable } from 'rxjs';
 })
 export class DoctorService {
 
+  // url='http://www.citasmedicaspepitas.info/api/public/medico'
   url='http://localhost:8090/api/public/medico'
+  
 
   constructor(private http: HttpClient) { }
 

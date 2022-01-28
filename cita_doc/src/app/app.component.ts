@@ -66,6 +66,9 @@ export class AppComponent implements OnInit, OnDestroy {
       if(event['url'] === '/tabs/perfil/det-dpersonales'){
         const tabBar = document.getElementById('myTabBar'); tabBar.style.display = 'none'
       }
+      if(event['url'] === '/tabs/perfil/det-dpersonales/direccion'){
+        const tabBar = document.getElementById('myTabBar'); tabBar.style.display = 'none'
+      }
       if(event['url'] === '/tabs/agendar/chat'){
         const tabBar = document.getElementById('myTabBar'); tabBar.style.display = 'none'
       }

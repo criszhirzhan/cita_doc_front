@@ -9,8 +9,9 @@ import { TokenService } from './token.service';
 })
 export class EnfermedadService {
 
+  // url='http://www.citasmedicaspepitas.info/api/private/enfermedad'
   url='http://localhost:8090/api/private/enfermedad'
-
+  
   constructor(private http: HttpClient,
     private tokenService: TokenService) { }
 

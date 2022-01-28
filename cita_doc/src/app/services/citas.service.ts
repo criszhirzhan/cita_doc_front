@@ -9,10 +9,18 @@ import { CitaPaciente } from '../models/Cita_p';
 })
 export class CitasService {
 
+  // url='http://www.citasmedicaspepitas.info/api/public/cita/citas/'
+  // url2='http://www.citasmedicaspepitas.info/api/public/cita'
+
   url='http://localhost:8090/api/public/cita/citas/'
   url2='http://localhost:8090/api/public/cita'
 
-  urlAPI='http://localhost:8090/api/private/cita'
+  //urlAPI='http://www.citasmedicaspepitas.info/api/private/cita' 
+
+  // url='http://localhost:8090/api/public/cita/citas/'
+  // url2='http://localhost:8090/api/public/cita'
+
+   urlAPI='http://192.168.100.5:8090/api/private/cita'
 
   constructor(private http: HttpClient, private tokenService: TokenService) { }
 

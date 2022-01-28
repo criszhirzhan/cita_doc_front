@@ -25,6 +25,7 @@ export class CitasPage implements OnInit {
   ngOnInit() {
     console.log('token id: ', this.tokenService.getUserId());
     this.listarCitas()
+    console.log(this.citas)
   }
 
   ionViewWillEnter(){

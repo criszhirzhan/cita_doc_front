@@ -11,9 +11,13 @@ import { TokenService } from './token.service';
 })
 export class CirugiaService {
 
+  //url='http://citadoc-env-1.eba-tere2tz5.sa-east-1.elasticbeanstalk.com/cirugia' 
+  //urlPc='http://citadoc-env-1.eba-tere2tz5.sa-east-1.elasticbeanstalk.com/paciente_cirugia'
+  //url='http://www.citasmedicaspepitas.info/cirugia'
+  //urlPc='http://www.citasmedicaspepitas.info/paciente_cirugia'
+
   url='http://localhost:8090/cirugia'
   urlPc='http://localhost:8090/paciente_cirugia'
-
   constructor(private http: HttpClient, private tokenService: TokenService) { }
 
 

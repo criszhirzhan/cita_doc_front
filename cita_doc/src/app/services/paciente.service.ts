@@ -9,9 +9,11 @@ import { Paciente } from '../models/Paciente';
 })
 export class PacienteService {
 
-  api   = 'http://localhost:8090/api/private/paciente';
+  // api   = 'http://www.citasmedicaspepitas.info/api/private/paciente';
+  // url='http://www.citasmedicaspepitas.info/api/public/paciente/'
+  api='http://localhost:8090/api/private/paciente'
   url='http://localhost:8090/api/public/paciente/'
-
+  
   constructor(private http: HttpClient, private tokenService: TokenService) { }
 
   // CREAR MODELO PACIENTE 

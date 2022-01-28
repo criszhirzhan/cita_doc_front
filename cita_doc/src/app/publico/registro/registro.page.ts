@@ -17,6 +17,7 @@ import { FormGroup } from '@angular/forms';
 export class RegistroPage implements OnInit {
 
   dateValue = '';
+  passConfirm = ''
 
   @ViewChild(IonDatetime, { static: true }) datetime: IonDatetime;
 
@@ -26,50 +27,67 @@ export class RegistroPage implements OnInit {
   constructor(private registroService: RegistroService,
     private router: Router,
     public toastController: ToastController) { }
-  paciente : Paciente = new Paciente(); 
+  paciente: Paciente = new Paciente();
   ngOnInit() {
   }
 
   confirm() {
     this.datetime.confirm();
   }
-  
+
   reset() {
     this.datetime.reset();
   }
 
   formatDate(value: string) {
     return format(parseISO(value), 'yyyy-MM-dd');
-  } 
+  }
 
-  guardarPaciente(){
-    //console.log('Guardando paciente')
-    //console.log('Fecha Nacimiento')
-    //console.log(this.dateValue)
-   // this.paciente.fechaNacimiento=this.dateValue
 
-    //console.log('Paciente')
+  validarPassw() {
+    console.log(this.paciente.password)
+    console.log(this.passConfirm)
+    if (this.paciente.password !== this.passConfirm) {
+      this.presentToast('Error', 'Las contraseñas no coinciden', 'danger');
+      return false
+    }
 
-    
-
-    // console.log('Paciente creado: ',this.paciente)
-     this.registroService.registrarPaciente(this.paciente).subscribe((res)=>{
-       this.paciente= new Paciente()
-       console.log('status: ', res.status);
-      }, error=>{
-       if(error.status === 201){
-         
-        this.presentToast('Exito', 'Usted ha sido registrado','success');
-        this.volver()
-      }else{
-         this.presentToast('Error', 'Algo salio mal','danger');
-     }
-     });
+    return true
 
   }
 
-  volver(){
-    this.paciente= new Paciente()
+  guardarPaciente() {
+    //console.log('Guardando paciente')
+    //console.log('Fecha Nacimiento')
+    //console.log(this.dateValue)
+    // this.paciente.fechaNacimiento=this.dateValue
+
+    //console.log('Paciente')
+
+
+
+    // console.log('Paciente creado: ',this.paciente)
+
+    if (this.validarPassw()) {
+      this.registroService.registrarPaciente(this.paciente).subscribe((res) => {
+        this.paciente = new Paciente()
+        console.log('status: ', res.status);
+      }, error => {
+
+        if (error.status === 201) {
+
+          this.presentToast('Exito', 'Usted ha sido registrado', 'success');
+          this.volver()
+        } else {
+          this.presentToast('Error', error.error, 'danger');
+        }
+      });
+    }
+
+  }
+
+  volver() {
+    this.paciente = new Paciente()
     this.router.navigateByUrl('/login')
   }
 

@@ -56,8 +56,8 @@ export class PatologiaPage implements OnInit {
      // this.paciente.pacientePatologias.push(this.patologia)
       console.log('Paciente update: ',this.paciente)
      // this.paciente.pacientePatologias.push(this.patologia)
-      this.patologia=new PacientePatologia()
-      this.formulario = new FormularioRegistroPatologia()
+      // this.patologia=new PacientePatologia()
+      // this.formulario = new FormularioRegistroPatologia()
       this.volver()
       console.log('Patologia creada: ',data)
     });

@@ -7,7 +7,9 @@ import { Clinica } from '../models/Clinica';
   providedIn: 'root'
 })
 export class ClinicaService {
+  // clinicasApi = 'http://www.citasmedicaspepitas.info/api/public/clinica';
   clinicasApi = 'http://localhost:8090/api/public/clinica';
+  
   constructor(
     private http: HttpClient
   ) { }

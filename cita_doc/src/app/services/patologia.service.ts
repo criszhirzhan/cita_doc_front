@@ -10,6 +10,7 @@ import { TokenService } from './token.service';
 })
 export class PatologiaService {
 
+  // url='http://www.citasmedicaspepitas.info/api/private/paciente_patologia'
   url='http://localhost:8090/api/private/paciente_patologia'
   constructor(private http: HttpClient,
     private tokenService: TokenService

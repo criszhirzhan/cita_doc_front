@@ -117,7 +117,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: '/tabs/citas',
+    redirectTo: '/login',
     pathMatch: 'full'
   },
 

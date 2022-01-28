@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ElementFinder } from 'protractor';
 import { Direccion } from 'src/app/models/Direccion';
 import { DireccionPaciente } from 'src/app/models/Direccion_pac';
 import { FormularioDireccionPaciente } from 'src/app/models/formularios/formularioDirPaciente';
@@ -41,8 +42,21 @@ export class DireccionPage implements OnInit {
     this.router.navigateByUrl('/tabs/perfil/det-dpersonales')
   }
 
+  validarCamposDireccion(){
+
+    if(this.direccion.calleSecundaria=='' || this.direccion.calleSecundaria==null){
+      this.direccion.calleSecundaria='Sin calle secundaria'
+    }
+    if(this.direccion.referencia=='' || this.direccion.referencia==null){
+      this.direccion.referencia='Sin referencias'
+    }
+
+  }
+
   addDireccion(){
     
+
+    this.validarCamposDireccion()
     this.direccionService.guardarDireccion(this.direccion).subscribe((data: Direccion)=>{
       this.direccion = new Direccion()
 
@@ -52,6 +66,7 @@ export class DireccionPage implements OnInit {
       this.addDireccionPaciente(JSON.parse(JSON.stringify(data)))
 
       this.direccion= new Direccion()
+      this.volver()
 
     });
   }
