@@ -5,7 +5,7 @@ Fue desarrollado usando tecnologías como Spring, PostgreSQL, AWS, Ionic y Rasa 
 
 
 <p align="center">
-      <img src="https://github.com/criszhirzhan/resources/blob/main/ChatBotR/RegistroUsuario.png?raw=true" width="300px" alt="Alt text" title="Registro de Usuario">
+      <img src="https://github.com/criszhirzhan/resources/blob/main/ChatBotR/RegistroUsuario.png?raw=true" width="200px" alt="Alt text" title="Registro de Usuario">
 </p>
 
 
