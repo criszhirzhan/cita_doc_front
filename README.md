@@ -9,7 +9,7 @@ Fue desarrollado usando tecnologías como Spring, PostgreSQL, AWS, Ionic y Rasa 
   src="https://github.com/criszhirzhan/resources/blob/main/ChatBotR/RegistroUsuario.png?raw=true"
   alt="Alt text"
   title="Optional title"
-  style="display: inline-block; margin: 0 auto; max-width: 300px">
+  style="text-align: center; max-width: 300px">
 
 
 
