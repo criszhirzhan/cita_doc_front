@@ -3,3 +3,10 @@ Fue desarrollado usando tecnologías como Spring, PostgreSQL, AWS, Ionic y Rasa 
 
 
 <img src="https://github.com/criszhirzhan/resources/blob/main/ChatBotR/RegistroUsuario.png?raw=true" width="300px" alt="Alt text" title="Optional title">
+<img src="https://github.com/criszhirzhan/resources/blob/main/ChatBotR/InicioSesion.png?raw=true" width="300px" alt="Alt text" title="Optional title">
+<img src="https://github.com/criszhirzhan/resources/blob/main/ChatBotR/PerfilUsuario.png?raw=true" width="300px" alt="Alt text" title="Optional title">
+<img src="https://github.com/criszhirzhan/resources/blob/main/ChatBotR/ListadoMedicos.png?raw=true" width="300px" alt="Alt text" title="Optional title">
+<img src="https://github.com/criszhirzhan/resources/blob/main/ChatBotR/DatosMedico.png?raw=true" width="300px" alt="Alt text" title="Optional title">
+<img src="https://github.com/criszhirzhan/resources/blob/main/ChatBotR/CitasAgendadas.png?raw=true" width="300px" alt="Alt text" title="Optional title">
+<img src="https://github.com/criszhirzhan/resources/blob/main/ChatBotR/DatosCitaAgendada.png?raw=true" width="300px" alt="Alt text" title="Optional title">
+<img src="https://github.com/criszhirzhan/resources/blob/main/ChatBotR/ChatBot.png?raw=true" width="300px" alt="Alt text" title="Optional title">
