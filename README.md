@@ -3,10 +3,14 @@ Fue desarrollado usando tecnologías como Spring, PostgreSQL, AWS, Ionic y Rasa 
 
 
 
-<center><img src="https://github.com/criszhirzhan/resources/blob/main/ChatBotR/RegistroUsuario.png?raw=true" width="300px" alt="Alt text" title="Registro de Usuario"></center>
-    <div style="text-align: center;"> 
-      <img src="https://github.com/criszhirzhan/resources/blob/main/ChatBotR/RegistroUsuario.png?raw=true" width="300px" alt="Alt text" title="Registro de Usuario">
-    </div>
+<center>
+    <img src="https://github.com/criszhirzhan/resources/blob/main/ChatBotR/RegistroUsuario.png?raw=true" width="300px" alt="Alt text" title="Registro de Usuario">
+</center>
+
+<p align="center">
+  <img width="460" height="300" src="https://github.com/criszhirzhan/resources/blob/main/ChatBotR/RegistroUsuario.png?raw=true">
+</p>
+
 
 
 <img src="https://github.com/criszhirzhan/resources/blob/main/ChatBotR/InicioSesion.png?raw=true" width="300px" alt="Alt text" title="Inicio de Sesion">
