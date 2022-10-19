@@ -3,9 +3,9 @@ Fue desarrollado usando tecnologías como Spring, PostgreSQL, AWS, Ionic y Rasa 
 
 
 
-\begin{center}
+<center>
 <img src="https://github.com/criszhirzhan/resources/blob/main/ChatBotR/RegistroUsuario.png?raw=true" width="300px" alt="Alt text" title="Registro de Usuario">
-\end{center}
+</center>
 
 
 
