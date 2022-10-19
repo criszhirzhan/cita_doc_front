@@ -33,7 +33,7 @@ Fue desarrollado usando tecnologías como Spring, PostgreSQL, AWS, Ionic y Rasa 
 </p>
 
 <p align="center">
-<img src="https://github.com/criszhirzhan/resources/blob/main/ChatBotR/ChatBot.png?raw=true" width="300px" alt="Alt text" title="ChatBot">
+<img src="https://github.com/criszhirzhan/resources/blob/main/ChatBotR/ChatBot.png?raw=true" width="220px" alt="Alt text" title="ChatBot">
 </p>
 
 
